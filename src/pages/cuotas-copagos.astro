@@ -1,0 +1,486 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AprendeConNosotros from "../assets/Aprende-Nosotros.jpg";
+import Exemptions from "../assets/exencion.png";
+import Hospital from "../assets/hospital.jpg";
+---
+
+<Layout
+  title="Cuotas y Copagos 2025 | Vivir IPS"
+  description="Consulte los valores actualizados de cuotas moderadoras y copagos según su régimen de afiliación. Información oficial sobre tarifas y exenciones para servicios de salud."
+  image="/hospital.jpg"
+  preloadImages={['/hospital-low.jpg']}
+>
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                <img 
+                    class="bg-image"
+                    src={Hospital.src}
+                    style="background-image: url('/hospital-low.jpg'); object-fit: cover; object-position: center;"
+                    fetchpriority="high"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cuotas-section standard-section">
+        <div class="container">
+            <!-- Cambiado de "title" a "container" -->
+            <h1 class="section-title">Cuotas Moderadoras y Copagos 2025</h1>
+
+            <div class="info-box">
+                <p>
+                    De acuerdo con lo establecido por el Gobierno Nacional, el
+                    Ministerio de Salud y Protección Social y el artículo 49 de
+                    la Ley 1955 de 2019, nos permitimos informar que a partir
+                    del 3 de enero de 2025 se ajustarán los valores de las
+                    cuotas moderadoras y copagos para los servicios incluidos
+                    (PBS) y no incluidos (NO PBS) en el Plan de Beneficios en
+                    Salud.
+                </p>
+            </div>
+
+            <div class="tables-container">
+                <h2>Régimen Contributivo</h2>
+
+                <h3>Cuota Moderadora</h3>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>GRUPO DE INGRESOS</th>
+                            <th>NIVEL DE INGRESOS</th>
+                            <th>VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>Cotizantes con ingresos inferiores a 2 SMLMV</td
+                            >
+                            <td>$ 4.700</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>Cotizantes con ingresos entre 2 y 5 SMLMV</td>
+                            <td>$ 19.200</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>Cotizantes con ingresos superiores a 5 SMLMV</td
+                            >
+                            <td>$ 50.300</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Copagos</h3>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <td>VALOR LÍMITE POR AÑO</td>
+                            <td>VALOR LÍMITE POR EVENTOS</td>
+                            <td>% POR EVENTO</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>11,5%</td>
+                            <td>$ 356.548</td>
+                            <td>$ 643.717</td>
+                        </tr>
+                        <tr>
+                            <td>17,3%</td>
+                            <td>$ 1.428.678</td>
+                            <td>$ 2.574.868</td>
+                        </tr>
+                        <tr>
+                            <td>23,0%</td>
+                            <td>$ 2.857.356</td>
+                            <td>$ 5.149.736</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="learn-section">
+                <h2>Aprende con nosotros</h2>
+
+                <div class="learn-grid horizontal">
+                    <div class="learn-card">
+                        <div class="card-header">
+                            <img
+                                src={AprendeConNosotros.src}
+                                alt="Ícono cuota moderadora"
+                                class="card-icon"
+                            />
+                            <h3>¿Qué es la Cuota Moderadora?</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                Es el valor que deben pagar los afiliados al
+                                sistema de salud cuando acceden a ciertos
+                                servicios. Su propósito es fomentar el uso
+                                racional del sistema y evitar la demanda
+                                innecesaria.
+                            </p>
+                            <h4>Se aplica en servicios como:</h4>
+                            <ul>
+                                <li>
+                                    * Consultas médicas generales y
+                                    especializadas
+                                </li>
+                                <li>* Exámenes de laboratorio o diagnóstico</li>
+                                <li>* Procedimientos ambulatorios</li>
+                                <li>* Entrega de medicamentos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="learn-card">
+                        <div class="card-header">
+                            <img
+                                src={AprendeConNosotros.src}
+                                alt="Ícono copago"
+                                class="card-icon"
+                            />
+                            <h3>¿Qué es el Copago?</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                El copago es un aporte que hace el usuario para
+                                cubrir parte del valor de algunos servicios que
+                                requiere. Aplica principalmente en tratamientos,
+                                hospitalización y procedimientos de alto costo.
+                            </p>
+
+                            <h4>¿Quiénes deben pagar?</h4>
+                            <h5>Régimen Contributivo:</h5>
+                            <p>
+                                Los afiliados cotizantes y sus beneficiarios
+                                deben asumir cuotas moderadoras y, en algunos
+                                casos, copagos.
+                            </p>
+                            <h5>Régimen Subsidiado:</h5>
+                            <p>Aplica copagos según el nivel del SISBEN.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exemptions-card">
+                    <div class="card-header">
+                        <img
+                            src={Exemptions.src}
+                            alt="Ícono exenciones"
+                            class="card-icon"
+                        />
+                        <h2>Exenciones</h2>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Están exentos del pago de cuota moderadora o copago
+                            las siguientes poblaciones, conforme a la normativa
+                            vigente:
+                        </p>
+                        <ul>
+                            <li>
+                                * Personas con enfermedades crónicas o de
+                                altocosto
+                            </li>
+                            <li>* Mujeres embarazadas</li>
+                            <li>* Niños menores de 5 años (según régimen)</li>
+                            <li>* Población con discapacidad (según norma)</li>
+                            <li>* Víctimas del conflicto armado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    .hero .overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+        z-index: 11;
+    }
+
+    .cuotas-section {
+        padding: 2rem 0;
+    }
+
+    .cuotas-section .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    h1 {
+        position: relative;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        color: var(--secondary-color);
+    }
+    .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary-color);
+    }
+
+    h2 {
+        margin: 1.5rem 0;
+        color: #19b8e9;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    h3 {
+        color: #0e3551;
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .info-box {
+        background-color: #f5f5f5;
+        border-left: 4px solid #19b8e9;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 4px;
+    }
+
+    .info-box p {
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .tables-container {
+        margin: 1.5rem 0;
+    }
+
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        background-color: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 1rem;
+        text-align: left;
+        border: 1px solid #e0e0e0;
+    }
+
+    .custom-table thead tr {
+        background-color: #0e3551;
+        color: white;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .learn-section {
+        margin: 2rem 0;
+        padding: 1.5rem 0;
+        background-color: #f9fcfd;
+    }
+
+    .learn-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .learn-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(25, 184, 233, 0.1);
+    }
+
+    .learn-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background: #ffffff;
+        padding: 1.5rem;
+        color: rgb(0, 0, 0);
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(25, 184, 233, 0.1);
+    }
+
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .learn-card:hover .card-icon {
+        transform: scale(1.05);
+    }
+
+    .card-content {
+        padding: 1.5rem;
+        background-color: #ffffff;
+        font-weight: bold;
+    }
+
+    .card-content h4 {
+        color: #0e3551;
+        margin: 0.5rem 0 0.5rem;
+        font-weight: bold;
+    }
+    .card-content p {
+        margin: 0.5rem 0 0.5rem;
+        line-height: 1.6;
+        font-weight: bold;
+    }
+
+    .card-content h5 {
+        color: Rgb(54, 69, 217, 1);
+        margin: 1rem 0 0.5rem;
+        font-weight: bold;
+    }
+
+    .card-content ul {
+        list-style-type: none;
+        padding-left: 0;
+        font-weight: bold;
+    }
+
+    .card-content ul li {
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 1.5rem;
+        font-weight: bold;
+    }
+
+    .card-content ul li:before {
+        content: "•";
+        color: #19b8e9;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+
+    .learn-grid.horizontal {
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 1.5rem;
+    }
+
+    .exemptions-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        max-width: 700px;
+        margin: 1.5rem auto;
+    }
+
+    .exemptions-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 768px) {
+        .custom-table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        .learn-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .learn-grid.horizontal {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

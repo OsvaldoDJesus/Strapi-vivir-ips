@@ -1,0 +1,18 @@
+---
+export interface Props {
+  preloadImages?: string[];
+}
+
+const { preloadImages = [] } = Astro.props;
+---
+
+{
+  preloadImages.map((imageUrl) => (
+    <link
+      rel="preload"
+      as="image"
+      href={imageUrl}
+      fetchpriority="high"
+    />
+  ))
+}

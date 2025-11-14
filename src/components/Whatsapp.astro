@@ -1,0 +1,77 @@
+---
+import WhatsappIcon from '../assets/wa.png';
+---
+
+<a 
+    href='https://wa.me/573001234567?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios' 
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contactar por WhatsApp"
+    class="whatsapp-float"
+>
+    <img src={WhatsappIcon.src} alt="WhatsApp" />
+</a>
+
+<style>
+    .whatsapp-float {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+    }
+
+    .whatsapp-float img {
+        height: 60px;
+        width: 60px;
+        -webkit-filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.3));
+        filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.3));
+        transform: scale(1);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.85);
+            filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0.7));
+        }
+
+        70% {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(37, 211, 102, 0.2));
+        }
+
+        100% {
+            transform: scale(0.85);
+            filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0));
+        }
+    }
+
+    @media screen and (max-width: 1050px) {
+        .whatsapp-float {
+            bottom: 30px;
+            right: 30px;
+        }
+
+        .whatsapp-float img {
+            height: 55px;
+            width: 55px;
+        }
+    }
+
+    @media screen and (max-width: 730px) {
+        .whatsapp-float {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .whatsapp-float img {
+            height: 50px;
+            width: 50px;
+        }
+    }
+</style>

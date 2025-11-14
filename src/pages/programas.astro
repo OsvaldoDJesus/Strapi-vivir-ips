@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Programass from '../components/Programas.astro';
+import Hospital from '../assets/hospital.jpg';
+---
+<Layout
+  title="Programas | Vivir IPS"
+  description="Conozca nuestros programas especializados para el cuidado integral de su salud."
+  image="/hospital.jpg"
+  preloadImages={['/hospital-low.jpg']}
+>
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                <img 
+                    class="bg-image"
+                    src={Hospital.src}
+                    style="background-image: url('/hospital-low.jpg');"
+                    fetchpriority="high"
+                    alt="Hospital background"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </img>
+        </div>
+    </section>
+    <Programass />
+</Layout>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    .hero .overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+        z-index: 11;
+    }
+</style>

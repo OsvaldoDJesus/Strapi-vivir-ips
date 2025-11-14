@@ -1,0 +1,42 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string | URL;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/default-social-image.png',
+  canonicalURL,
+  noIndex = false,
+} = Astro.props;
+
+// Safe URL creation
+const siteUrl = 'https://vivirips.com';
+const socialImageUrl = new URL(image.startsWith('http') ? image : image, siteUrl).toString();
+const canonical = new URL(canonicalURL?.toString() || Astro.url.pathname, siteUrl).toString();
+---
+
+<!-- SEO Basic Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow'} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageUrl} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={socialImageUrl} />

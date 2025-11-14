@@ -1,0 +1,21 @@
+---
+import { Button } from "./ui/button";
+---
+
+<div class="p-4">
+    <h2 class="text-2xl font-bold mb-4">Ejemplo de Botones shadcn/ui</h2>
+    <div class="space-y-4">
+        <Button client:load>Botón Default</Button>
+        <Button client:load variant="secondary">Botón Secondary</Button>
+        <Button client:load variant="destructive">Botón Destructive</Button>
+        <Button client:load variant="outline">Botón Outline</Button>
+        <Button client:load variant="ghost">Botón Ghost</Button>
+        <Button client:load variant="link">Botón Link</Button>
+        
+        <div class="mt-4">
+            <Button client:load size="sm">Pequeño</Button>
+            <Button client:load size="default" className="ml-2">Default</Button>
+            <Button client:load size="lg" className="ml-2">Grande</Button>
+        </div>
+    </div>
+</div>

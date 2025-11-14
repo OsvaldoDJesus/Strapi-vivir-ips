@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import hero03 from '../assets/hero03.jpg';
+---
+
+<Layout
+  title="Servicios | Vivir IPS"
+  description="Ofrecemos servicios médicos especializados, incluyendo enfermería, fisioterapia, medicina general y más."
+  image="/hero03-bg.jpg"
+  preloadImages={['/hero03-bg-low.jpg']}
+>
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                <img 
+                    class="bg-image"
+                    src={hero03.src}
+                    style="background-image: url(/hero03-bg-low.jpg);"
+                    fetchpriority="high"
+                    alt="Hero background"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </img>
+        </div>
+    </section>
+    <section class='servicios standard-section'>
+        <h1 class='section-title'>Servicios</h1>
+        <div class='servicios-container'>
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-user-nurse'></i></div>
+                <h3 class='nombre-servicio'>ENFERMERÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-walking'></i></div>
+                <h3 class='nombre-servicio'>FISIOTERAPIA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-comments'></i></div>
+                <h3 class='nombre-servicio'>
+                    FONOAUDIOLOGÍA Y/O TERAPIA DEL LENGUAJE
+                </h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-female'></i></div>
+                <h3 class='nombre-servicio'>GINECOBSTETRICIA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-tint'></i></div>
+                <h3 class='nombre-servicio'>HEMATOLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-home'></i></div>
+                <h3 class='nombre-servicio'>CURACIONES Y PROCEDIMIENTOS BÁSICOS DOMICILIARIOS</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-bed'></i></div>
+                <h3 class='nombre-servicio'>
+                    HOSPITALIZACIÓN PACIENTE CRÓNICO SIN VENTILADOR
+                </h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-virus'></i></div>
+                <h3 class='nombre-servicio'>INFECTOLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-user-md'></i></div>
+                <h3 class='nombre-servicio'>MEDICINA GENERAL</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-stethoscope'></i></div>
+                <h3 class='nombre-servicio'>MEDICINA INTERNA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-filter'></i></div>
+                <h3 class='nombre-servicio'>NEFROLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-apple-alt'></i></div>
+                <h3 class='nombre-servicio'>NUTRICIÓN Y DIETÉTICA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-tooth'></i></div>
+                <h3 class='nombre-servicio'>ODONTOLOGÍA GENERAL</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-eye'></i></div>
+                <h3 class='nombre-servicio'>OFTALMOLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-baby'></i></div>
+                <h3 class='nombre-servicio'>PEDIATRÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-brain'></i></div>
+                <h3 class='nombre-servicio'>PSICOLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-pills'></i></div>
+                <h3 class='nombre-servicio'>PSIQUIATRÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-bone'></i></div>
+                <h3 class='nombre-servicio'>REUMATOLOGÍA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-pills'></i></div>
+                <h3 class='nombre-servicio'>SERVICIO FARMACÉUTICO</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-hands'></i></div>
+                <h3 class='nombre-servicio'>TERAPIA OCUPACIONAL</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-lungs'></i></div>
+                <h3 class='nombre-servicio'>TERAPIA RESPIRATORIA</h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-microscope'></i></div>
+                <h3 class='nombre-servicio'>
+                    TOMA DE MUESTRAS DE CUELLO UTERINO Y GINECOLÓGICAS
+                </h3>
+            </div>
+
+            <div class='servicio-card'>
+                <div class='icono'><i class='fas fa-vial'></i></div>
+                <h3 class='nombre-servicio'>
+                    TOMA DE MUESTRAS DE LABORATORIO CLÍNICO
+                </h3>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    .hero .overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+        z-index: 11;
+    }
+
+    /* Los estilos de .servicios y .section-title ahora vienen del Layout global */
+
+    .servicios-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 3rem;
+    }
+    .servicio-card {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    /* Los h3 usan el tamaño estandarizado del Layout global */
+
+    .servicio-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .icono {
+        background-color: #19b8e9;
+        color: white;
+        min-width: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.4em;
+    }
+    .nombre-servicio {
+        font-weight: bold;
+        color: #34495e;
+    }
+</style>

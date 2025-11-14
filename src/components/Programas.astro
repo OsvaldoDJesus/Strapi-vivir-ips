@@ -1,0 +1,878 @@
+---
+import Primaria from "../assets/hero-bg.jpg";
+import Domiciliaria from "../assets/hero02.jpg";
+import B24x from "../assets/hero03.jpg";
+import Ar from "../assets/enfermera.jpg";
+import Nefrologia from "../assets/hero02.jpg";
+import Hematologia from "../assets/nurse.jpg";
+import Hepatitis from "../assets/hospital.jpg";
+---
+
+<section class="programas standard-section">
+    <h1 class="section-title">Nuestros Programas</h1>
+    <p class="section-description">
+        Descubra los programas especializados que ofrecemos para el cuidado
+        integral de su salud
+    </p>
+    <div class="tabs-container">
+        <!-- Botón scroll izquierda -->
+        <button class="scroll-button scroll-left" id="scrollLeft" aria-label="Scroll left">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="tabs-nav" id="tabs-nav-container">
+            <button
+                class="tab-button active"
+                onclick="openTab(event, 'atencion-primaria')"
+            >
+                <i class="fas fa-house-medical"></i>Atención Primaria
+            </button>
+            <button
+                class="tab-button"
+                onclick="openTab(event, 'atencion-domiciliaria')"
+            >
+                <i class="fas fa-house-medical-circle-check"></i>Atención
+                Domiciliaria
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'b24x')">
+                <i class="fas fa-people-group"></i> Caminando Juntos - B24X 
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'ar')">
+                <i class="fas fa-hands-holding-circle"></i>Articulando
+                Bienestar - AR 
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'nefrologia')">
+                <i class="fas fa-vial"></i> Guardianes Renales - Nefrología 
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'hematologia')">
+                <i class="fas fa-droplet"></i> Círculo de Vida - Hematología 
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'Hepatitis')">
+                <i class="fas fa-disease"></i>
+Hepatitis C
+            </button>
+        </div>
+
+        <!-- Botón scroll derecha -->
+        <button class="scroll-button scroll-right" id="scrollRight" aria-label="Scroll right">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Atención Primaria -->
+        <div id="atencion-primaria" class="tab-content active">
+            <div class="program-image">
+                <img src={Primaria.src} alt="Imagen de Atención Primaria" />
+            </div>
+            <div class="program-info">
+                <h3>Atención Primaria en Salud</h3>
+                <p>
+                    Nuestro programa de Atención Primaria está diseñado para ser
+                    el primer contacto del paciente con el sistema de salud,
+                    enfocándonos en la prevención, detección temprana y
+                    tratamiento oportuno de enfermedades comunes.
+                </p>
+                <p>
+                    El equipo multidisciplinario trabaja de manera coordinada
+                    para garantizar un cuidado integral centrado en el paciente
+                    y su entorno familiar.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <span>Consultas médicas generales</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <span>Vacunación preventiva</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart-pulse"></i>
+                        </div>
+                        <span>Control de enfermedades crónicas</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+                        <span>Valoraciones integrales</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- Atención Domiciliaria -->
+        <div id="atencion-domiciliaria" class="tab-content">
+            <div class="program-image">
+                <img src={Domiciliaria.src} alt="Imagen de Atención Domiciliaria" />
+            </div>
+            <div class="program-info">
+                <h3>Atención Domiciliaria</h3>
+                <p>
+                    Llevamos los servicios de salud a la comodidad de su hogar.
+                    Nuestro programa de Atención Domiciliaria está diseñado para
+                    pacientes con movilidad reducida o condiciones que
+                    dificultan su desplazamiento a centros médicos.
+                </p>
+                <p>
+                    Contamos con equipos móviles de profesionales capacitados
+                    para brindar atención médica de calidad en el entorno
+                    familiar.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+                        <span>Consultas médicas en casa</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <span>Toma de muestras a domicilio</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-kit-medical"></i>
+                        </div>
+                        <span>Curaciones y procedimientos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-prescription-bottle-medical"></i>
+                        </div>
+                        <span>Administración de medicamentos siempre con alta calidad e idoneidad</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-person-walking"></i>
+                        </div>
+                        <span>Rehabilitación terapéutica integral</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-people-group"></i>
+                        </div>
+                        <span>abordaje interdisciplinario</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- B24X - Caminando Juntos -->
+        <div id="b24x" class="tab-content">
+            <div class="program-image">
+                <img src={B24x.src} alt="Imagen de Caminando Juntos - B24X" />
+            </div>
+            <div class="program-info">
+                <h3>Caminando Juntos - B24X</h3>
+                <p>
+                    Programa especializado en el acompañamiento integral para
+                    pacientes viviendo con VIH. "Caminando Juntos" proporciona un
+                    enfoque multidisciplinario que abarca desde el diagnóstico
+                    hasta el tratamiento continuo.
+                </p>
+                <p>
+                    Trabajamos para asegurar una mejor calidad de vida,
+                    adherencia al tratamiento y apoyo psicosocial para nuestros
+                    pacientes.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <span>Tratamiento antirretroviral</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+                        <span>Consultas especializadas</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span>Apoyo psicológico</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-people-arrows"></i>
+                        </div>
+                        <span>Grupos de apoyo</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"> 
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <span>Seguimiento químico farmacéutico</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"> 
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <span>Esquemas PrEP</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"> 
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <span> Esquemas PEP </span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- AR - Articulando Bienestar -->
+        <div id="ar" class="tab-content">
+            <div class="program-image">
+                <img src={Ar.src} alt="Imagen de Articulando Bienestar - AR" />
+            </div>
+            <div class="program-info">
+                <h3>Articulando Bienestar - AR </h3>
+                <p>
+                    Programa especializado en el manejo integral de enfermedades
+                    articulares y reumatológicas. "Articulando Bienestar" ofrece
+                    un enfoque completo para mejorar la calidad de vida de los
+                    pacientes con artritis y otras condiciones similares.
+                </p>
+                <p>
+                    Combinamos tratamientos farmacológicos con terapias
+                    complementarias para aliviar el dolor y mejorar la
+                    movilidad.
+                </p>
+                <p>
+                    Las enfermedades degenerativas osteoarticulares requieren de una serie
+                    de intervenciones no solo clínicas y paraclínicas sino en rehabilitación
+                    y administración oportuna de tratamiento farmacológico.
+                    Es así como VIVIR IPS realiza a través de su equipo clínico dichas intervenciones
+                    una vez ingresa cada caso, analizando el plan de manejo a corto y largo plazo,
+                    minimizando el dolor, la inflamación y el deterioro articular que tanto afecta
+                    a nuestros pacientes.
+
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <span>Manejo del dolor articular</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <span>Terapia física especializada</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <span>Tratamientos biológicos</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <span>Autocuidado guiado</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <span>Consulta especializada</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- Nefrología - Guardianes Renales -->
+        <div id="nefrologia" class="tab-content">
+            <div class="program-image">
+                <img src={Nefrologia.src} alt="Imagen de Guardianes Renales - Nefrología" />
+            </div>
+            <div class="program-info">
+                <h3>Guardianes Renales - Nefrología</h3>
+                <p>
+                    Programa especializado en el cuidado y preservación de la
+                    función renal. "Guardianes Renales" está diseñado para
+                    pacientes con enfermedades renales crónicas en diferentes
+                    estadios, incluyendo aquellos que requieren diálisis.
+                </p>
+                <p>
+                    Nuestro equipo nefrológico trabaja para retrasar la
+                    progresión de la enfermedad y mantener la mejor calidad de
+                    vida posible.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-hospital-user"></i>
+                        </div>
+                        <span>Seguimiento nefrológico</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <span>Vigilancia del paciente en manejo con diálisis</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <span>Orientación nutricional</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span>Control de comorbilidades</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <span>Programa de intervención en pre diálisis,diálisis y diálisis peritoneal</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- Hematología - Círculo de Vida -->
+        <div id="hematologia" class="tab-content">
+            <div class="program-image">
+                <img src={Hematologia.src} alt="Imagen de Círculo de Vida - Hematología" />
+            </div>
+            <div class="program-info">
+                <h3>Círculo de Vida - Hematología</h3>
+                <p>
+                    Programa especializado en el diagnóstico y tratamiento de
+                    enfermedades de la sangre. "Círculo de Vida" ofrece atención
+                    integral a pacientes con anemias, trastornos de coagulación,
+                    hemofilia y otras condiciones hematológicas.
+                </p>
+                <p>
+                    Contamos con especialistas dedicados a personalizar los
+                    tratamientos según las necesidades específicas de cada
+                    paciente.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <span>Diagnóstico hematológico</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-doctor"></i>
+                        </div>
+                        <span>Consulta especializada</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+
+        <!-- Enfermedades Huérfanas -->
+        <div id="Hepatitis" class="tab-content">
+            <div class="program-image">
+                <img src={Hepatitis.src} alt="Imagen de Hepatitis C" />
+            </div>
+            <div class="program-info">
+                <h3>Hepatitis C</h3>
+                <p>
+                    La hepatitis C sigue siendo una patologia infecciosa que afecta
+                    no solo a los pacientes seropositivos, si no a otros grupos poblacionales
+                    a riesgo entre ellos los personas con tatuajes, pacientes trasplantados o que
+                    requirieron trasfusiones de sangre ates de 1992, ITS, y enfermedades cronicas como
+                    ERC, es por esto que desde la IPS se establecio un programa solido de tamizaje
+                    e intervencion temprana para el tratamiento y curacion de los pacientes
+                    cooinfectados con esta patologia. 
+                </p>
+                <p>
+                    Trabajamos en red con especialistas nacionales e
+                    internacionales para proporcionar las mejores opciones
+                    terapéuticas disponibles.
+                </p>
+
+                <div class="program-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <span>Diagnóstico genético</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <span>Terapias innovadoras</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span>Atención multidisciplinaria</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span>Conexión con redes especializadas</span>
+                    </div>
+                </div>
+
+                <a href="/contacto" class="cta-button">Solicitar información</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Variables globales
+    let tabsContainer;
+    let scrollLeftBtn;
+    let scrollRightBtn;
+    let isScrolling = false;
+
+    // Inicializar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', initializeTabs);
+
+    function initializeTabs() {
+        tabsContainer = document.getElementById("tabs-nav-container");
+        scrollLeftBtn = document.getElementById("scrollLeft");
+        scrollRightBtn = document.getElementById("scrollRight");
+
+        if (!tabsContainer || !scrollLeftBtn || !scrollRightBtn) {
+            console.error('Tabs elements not found');
+            return;
+        }
+
+        // Event listeners para botones de scroll
+        scrollLeftBtn.addEventListener('click', () => scrollTabs(-300));
+        scrollRightBtn.addEventListener('click', () => scrollTabs(300));
+
+        // Event listener para wheel scroll - OPTIMIZADO
+        tabsContainer.addEventListener('wheel', handleWheelScroll, { passive: true });
+
+        // Event listener para detectar cambios en el scroll
+        tabsContainer.addEventListener('scroll', updateScrollButtons, { passive: true });
+
+        // Actualizar botones inicialmente
+        updateScrollButtons();
+
+        // Actualizar en resize
+        window.addEventListener('resize', updateScrollButtons, { passive: true });
+    }
+
+    function scrollTabs(amount) {
+        if (!tabsContainer) return;
+        
+        tabsContainer.scrollBy({
+            left: amount,
+            behavior: 'smooth'
+        });
+    }
+
+    function updateScrollButtons() {
+        if (!tabsContainer || !scrollLeftBtn || !scrollRightBtn) return;
+
+        const scrollLeft = tabsContainer.scrollLeft;
+        const maxScroll = tabsContainer.scrollWidth - tabsContainer.clientWidth;
+
+        // Mostrar/ocultar botón izquierdo
+        if (scrollLeft <= 5) {
+            scrollLeftBtn.classList.add('hidden');
+        } else {
+            scrollLeftBtn.classList.remove('hidden');
+        }
+
+        // Mostrar/ocultar botón derecho
+        if (scrollLeft >= maxScroll - 5) {
+            scrollRightBtn.classList.add('hidden');
+        } else {
+            scrollRightBtn.classList.remove('hidden');
+        }
+    }
+
+    function handleWheelScroll(event) {
+        // NO prevenir default para evitar conflictos
+        // El navegador manejará el scroll naturalmente
+        
+        // Detectar si el scroll es más horizontal que vertical
+        const isHorizontalScroll = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+        
+        // Solo hacer scroll horizontal si detectamos intención horizontal
+        if (isHorizontalScroll && tabsContainer) {
+            // Usar requestAnimationFrame para mejor performance
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(() => {
+                    tabsContainer.scrollLeft += event.deltaX;
+                    isScrolling = false;
+                });
+            }
+        }
+    }
+
+    function scrollToButton(buttonElement) {
+        if (!tabsContainer || !buttonElement) return;
+
+        const buttonLeft = buttonElement.offsetLeft;
+        const buttonWidth = buttonElement.offsetWidth;
+        const containerWidth = tabsContainer.offsetWidth;
+
+        const scrollPosition = buttonLeft - (containerWidth / 2) + (buttonWidth / 2);
+
+        tabsContainer.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+    }
+
+    function openTab(evt, tabName) {
+        if (!evt || !evt.currentTarget) return;
+
+        // Ocultar todos los contenidos
+        const tabContents = document.getElementsByClassName("tab-content");
+        Array.from(tabContents).forEach(content => {
+            content.classList.remove("active");
+        });
+
+        // Desactivar todos los botones
+        const tabButtons = document.getElementsByClassName("tab-button");
+        Array.from(tabButtons).forEach(button => {
+            button.classList.remove("active");
+        });
+
+        // Activar el tab seleccionado
+        const selectedTab = document.getElementById(tabName);
+        if (selectedTab) {
+            selectedTab.classList.add("active");
+        }
+
+        // Activar el botón seleccionado
+        evt.currentTarget.classList.add("active");
+
+        // Hacer scroll al botón activo
+        scrollToButton(evt.currentTarget);
+    }
+
+    // Hacer las funciones disponibles globalmente
+    window.openTab = openTab;
+</script>
+
+<style>
+    /* Los estilos de .programas ahora usan .standard-section del Layout global */
+
+    .programas .section-description {
+        margin-bottom: var(--content-gap);
+        text-align: center;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media screen and (min-width: 769px) {
+        .hero .overlay .row div h2 {
+            font-size: 1.8em;
+        }
+
+        .hero .overlay .row div {
+            max-width: 70%;
+        }
+    }
+
+    .tabs-container {
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Botones de scroll */
+    .scroll-button {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        background: linear-gradient(90deg, white 50%, transparent 100%);
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 20px;
+        transition: all 0.3s ease;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .scroll-button:hover {
+        color: var(--secondary-color);
+        background: linear-gradient(90deg, rgba(255,255,255,0.95) 50%, transparent 100%);
+    }
+
+    .scroll-button.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .scroll-left {
+        left: 0;
+        background: linear-gradient(90deg, white 50%, transparent 100%);
+    }
+
+    .scroll-right {
+        right: 0;
+        background: linear-gradient(270deg, white 50%, transparent 100%);
+    }
+
+    .tabs-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        background-color: #f0f3f8;
+        padding: 0 10px;
+        border-bottom: 1px solid #e0e6ed;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #19b8e9 #f0f3f8;
+        scroll-behavior: smooth;
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-nav::-webkit-scrollbar-track {
+        background: #f0f3f8;
+        border-radius: 10px;
+    }
+
+    .tabs-nav::-webkit-scrollbar-thumb {
+        background: #19b8e9;
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .tabs-nav::-webkit-scrollbar-thumb:hover {
+        background: #0e3551;
+    }
+
+    .tab-button {
+        padding: 20px 28px;
+        margin: 0 5px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #7f8c8d;
+        cursor: pointer;
+        white-space: nowrap;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .tab-button:hover {
+        color: #19b8e9;
+    }
+
+    .tab-button.active {
+        color: #19b8e9;
+    }
+
+    .tab-button i {
+        margin-right: 10px;
+        font-size: 18px;
+        transition: color 0.3s ease;
+    }
+
+    .tab-button:hover i,
+    .tab-button.active i {
+        color: #19b8e9;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 40px;
+    }
+
+    .tab-content.active {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .program-image {
+        flex: 1;
+        min-width: 280px;
+        height: 400px;
+        margin-right: 40px;
+        border-radius: 15px;
+        overflow: hidden;
+        background-color: #e0e6ed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .program-image img {
+        max-width: 190%;
+        max-height: 120%;
+        object-fit: cover;
+    }
+
+    .program-info {
+        flex: 2;
+        min-width: 280px;
+    }
+
+    .program-info h3 {
+        font-size: 28px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .program-info p {
+        margin-bottom: 20px;
+        color: #5d6d7e;
+        font-size: 16px;
+        text-align: justify;
+        hyphens: auto;
+        text-wrap: pretty;
+    }
+
+    .program-features {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        gap: 20px;
+    }
+    .feature-item {
+        display: flex;
+        align-items: center;
+        width: calc(50% - 10px);
+        min-width: 200px;
+        margin-bottom: 15px;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(52, 152, 219, 0.1);
+        color: #19b8e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+    }
+
+    .cta-button {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .tab-content.active {
+            flex-direction: column;
+        }
+
+        .program-image {
+            margin: 0 0 30px 0;
+            width: 100%;
+        }
+
+        .feature-item {
+            width: 100%;
+        }
+
+        /* Ocultar botones de scroll en móviles */
+        .scroll-button {
+            display: none;
+        }
+
+        .tabs-nav {
+            padding: 0 15px;
+        }
+
+        .tab-button {
+            padding: 16px 20px;
+            font-size: 14px;
+        }
+
+        .tab-button i {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tabs-container {
+            border-radius: 10px;
+        }
+
+        .tab-button {
+            padding: 14px 16px;
+            font-size: 13px;
+            margin: 0 3px;
+        }
+
+        .tab-button i {
+            font-size: 14px;
+            margin-right: 6px;
+        }
+
+        .tab-content {
+            padding: 25px 20px;
+        }
+
+        .program-info h3 {
+            font-size: 22px;
+        }
+
+        .program-info p {
+            font-size: 14px;
+        }
+    }
+</style>

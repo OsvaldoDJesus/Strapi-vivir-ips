@@ -1,0 +1,468 @@
+---
+import Logo from "../assets/logo-01.png";
+import HeaderNavigation from "./HeaderNavigation";
+---
+
+<header>
+    <!-- Top Header CTA -->
+    <div class="fixed top-0 left-0 right-0 bg-[#19b8e9] z-[1001] py-3 text-center max-[1079px]:block hidden px-2">
+        <div class="text-white font-medium header-cta-text">
+            <span>¿Necesitas atención médica? </span>
+            <a href="/contacto" class="text-white underline font-semibold hover:no-underline hover:opacity-90 transition-all duration-200">Contáctanos ahora</a>
+        </div>
+    </div>
+
+    <div 
+        id="navbar" 
+        class="navbar-wrapper fixed left-0 right-0 h-[90px] z-[1000] max-[1079px]:h-[100px] max-[1079px]:top-[36px] min-[1080px]:top-10 min-[1080px]:h-20"
+    >
+        <!-- Floating island background (initial state) -->
+        <div 
+            id="navbar-floating-bg" 
+            class="navbar-bg-floating absolute top-0 left-1/2 -translate-x-1/2 w-[70%] h-full rounded-[60px] bg-[hsla(0,0%,100%,0.8)] shadow-[0_0_4px_4px_rgba(14,53,81,0.2)] backdrop-blur-[20px] transition-opacity duration-500 ease-in-out hidden min-[1080px]:block"
+        ></div>
+        
+        <!-- Full-width background (scrolled state) -->
+        <div 
+            id="navbar-full-bg" 
+            class="navbar-bg-full absolute top-0 left-0 right-0 h-full bg-[hsla(0,0%,97%,1)] border-b border-black/10 shadow-[0_0_4px_6px_rgba(0,0,0,0.05)] transition-opacity duration-500 ease-in-out opacity-0 min-[1080px]:opacity-0 max-[1079px]:opacity-100 max-[1079px]:!bg-white max-[1079px]:border-black/12 max-[1079px]:shadow-[0_0_4px_6px_rgba(0,0,0,0.08)]"
+        ></div>
+
+        <!-- Content container - fixed width, never moves -->
+        <div class="navbar-content relative z-10 h-full flex items-center justify-between max-w-[70vw] mx-auto px-10 max-[1079px]:max-w-none max-[1079px]:px-[var(--container-padding,20px)]">
+            <div class="left-container flex-shrink-0">
+                <a href="/">
+                    <img 
+                        src={Logo.src} 
+                        alt="Logo Vivir IPS" 
+                        class="h-[75px] transition-all duration-300 min-[1080px]:h-20 max-[1079px]:h-[85px]"
+                    />
+                </a>
+            </div>
+
+            <HeaderNavigation client:load />
+        </div>
+    </div>
+</header>
+
+<script>
+    let scrollHandler: (() => void) | null = null;
+
+    function initScrollHandler() {
+        const navbar = document.getElementById('navbar');
+        const floatingBg = document.getElementById('navbar-floating-bg');
+        const fullBg = document.getElementById('navbar-full-bg');
+        
+        if (!navbar || !floatingBg || !fullBg) return;
+
+        scrollHandler = () => {
+            const scrollY = window.scrollY;
+            const isScrolled = scrollY > 200;
+            const isDesktop = window.innerWidth >= 1080;
+            
+            // Only apply scroll animation on desktop
+            if (isDesktop) {
+                if (isScrolled) {
+                    // Fade out floating background, fade in full-width background
+                    floatingBg.style.opacity = '0';
+                    fullBg.style.opacity = '1';
+                    // Move navbar to top
+                    navbar.style.top = '0';
+                } else {
+                    // Fade in floating background, fade out full-width background
+                    floatingBg.style.opacity = '1';
+                    fullBg.style.opacity = '0';
+                    // Restore offset
+                    navbar.style.top = '2.5rem'; // 40px / top-10
+                }
+            } else {
+                // Reset styles for mobile - let CSS handle it
+                floatingBg.style.opacity = '';
+                fullBg.style.opacity = '';
+                navbar.style.top = '';
+            }
+        };
+
+        window.addEventListener('scroll', scrollHandler);
+        window.addEventListener('resize', scrollHandler);
+        scrollHandler(); // Initial check
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollHandler);
+    } else {
+        initScrollHandler();
+    }
+
+    // Cleanup on navigation (Astro islands)
+    if (import.meta.hot) {
+        import.meta.hot.dispose(() => {
+            if (scrollHandler) {
+                window.removeEventListener('scroll', scrollHandler);
+                window.removeEventListener('resize', scrollHandler);
+            }
+        });
+    }
+</script>
+
+<style>
+    /* Estilos globales para navegación - necesarios para los componentes React */
+    :global(.nav-menu) {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Estilos específicos para el CTA del header - Excepciones de tamaño global */
+    .header-cta-text {
+        font-size: 0.875rem !important; /* 14px - tamaño fijo */
+        line-height: 1.25rem !important;
+    }
+
+    /* En pantallas muy pequeñas, mantener un tamaño legible */
+    @media screen and (max-width: 480px) {
+        .header-cta-text {
+            font-size: 0.8125rem !important; /* 13px - tamaño fijo para móviles pequeños */
+            line-height: 1.125rem !important;
+        }
+    }
+
+    :global(.nav-link) {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        display: block;
+        padding: 16px 8px;
+        margin: 4px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        transition: all 0.2s ease;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    :global(.nav-link:hover) {
+        color: var(--primary-color);
+    }
+
+    :global(.dropdown-toggle) {
+        background: none;
+        border: none;
+        color: var(--secondary-color);
+        font-weight: 500 !important;
+        font-size: 1rem !important;
+        padding: 16px 8px;
+        margin: 4px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        width: 100%;
+        text-align: left;
+        font-family: var(--main-font) !important;
+        cursor: pointer;
+    }
+
+    :global(.dropdown-toggle span) {
+        font-weight: 500 !important;
+    }
+
+    :global(.submenu) {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    :global(.submenu li) {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    :global(.dropdown.active .submenu) {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        gap: 0px !important;
+    }
+
+    :global(.submenu-link) {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        display: block;
+        padding: 6px 0;
+        margin: 0;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        line-height: 1.2;
+    }
+
+    :global(.submenu-link:hover) {
+        color: var(--primary-color);
+    }
+
+    /* Navbar wrapper with smooth top position transition */
+    .navbar-wrapper {
+        transition: top 0.5s ease-in-out;
+    }
+
+    /* Background layers handle the visual transition */
+    .navbar-bg-floating,
+    .navbar-bg-full {
+        pointer-events: none; /* Backgrounds don't intercept clicks */
+    }
+
+    /* Content container stays fixed, never moves */
+    .navbar-content {
+        /* Content is always centered and maintains consistent width */
+    }
+
+    /* Estilos para los componentes React */
+    :global(.right-container) {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    /* Mobile styles - debajo de 1080px */
+    @media screen and (max-width: 1079px) {
+        :global(.nav-menu) {
+            position: fixed;
+            top: 136px;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            max-height: calc(100vh - 136px);
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        :global(.nav-menu.active) {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Estilos específicos para el botón CTA en mobile */
+        :global(.nav-menu .nav-cta .cta-button) {
+            background-color: var(--secondary-color) !important;
+            font-weight: var(--regular-weight) !important;
+            box-shadow: rgba(14, 53, 81, 0.2) 0px 2px 8px !important;
+            display: inline-block !important;
+            text-align: center !important;
+            width: 100% !important;
+            color: rgb(255, 255, 255) !important;
+            padding: 16px 28px !important;
+            border-radius: 25px !important;
+            transition: 0.3s !important;
+            text-decoration: none !important;
+            margin: 20px 8px 10px !important;
+            border-bottom: none !important;
+            border: none !important;
+        }
+
+        :global(.nav-menu .nav-cta .cta-button:hover) {
+            background-color: var(--primary-color) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(25, 184, 233, 0.3) !important;
+        }
+
+        :global(.nav-menu ul) {
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+        }
+
+        :global(.nav-menu li) {
+            width: 100%;
+            display: block;
+        }
+
+        :global(.nav-link) {
+            background: transparent;
+            margin: 4px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        :global(.nav-link:hover) {
+            color: var(--primary-color);
+        }
+
+        :global(.dropdown-toggle) {
+            background: transparent;
+            margin: 4px 0;
+        }
+
+        :global(.dropdown-toggle:hover) {
+            color: var(--primary-color);
+        }
+
+        :global(.dropdown.active .dropdown-toggle) {
+            color: var(--primary-color);
+        }
+
+        :global(.submenu) {
+            background: transparent;
+            margin-top: 8px;
+            padding-left: 15px;
+        }
+
+        :global(.submenu-link) {
+            padding: 10px 15px;
+            margin: 2px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 0.95rem;
+            width: 100%;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        :global(.submenu-link:hover) {
+            color: var(--primary-color);
+        }
+
+        :global(.dropdown.active .submenu) {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    /* Desktop styles - 1080px y más */
+    @media screen and (min-width: 1080px) {
+        :global(.menu-toggle-button) {
+            display: none !important;
+        }
+
+        :global(.nav-menu) {
+            position: static;
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+            transform: none;
+            max-height: none;
+            overflow-y: visible;
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+
+        :global(.nav-menu ul) {
+            display: flex !important;
+            gap: 30px !important;
+            align-items: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+        }
+
+        :global(.nav-menu li) {
+            width: auto !important;
+            display: flex !important;
+            align-items: center !important;
+            margin: 0 !important;
+        }
+
+        :global(.nav-link) {
+            padding: 0;
+            border-bottom: none;
+        }
+
+        :global(.dropdown-toggle) {
+            padding: 0;
+            border-bottom: none;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500 !important;
+        }
+
+        :global(.dropdown-toggle span) {
+            font-weight: 500 !important;
+        }
+
+        :global(.dropdown) {
+            position: relative;
+        }
+
+        :global(.submenu) {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            min-width: 220px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding-left: 0;
+            max-height: none;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+        }
+
+        :global(.dropdown:hover .submenu) {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            gap: 0px !important;
+        }
+
+        :global(.submenu-link) {
+            padding: 12px 20px;
+            margin: 0;
+            white-space: nowrap;
+            border-bottom: none;
+            line-height: 1.2;
+        }
+
+        :global(.submenu-link:hover) {
+            color: var(--primary-color);
+        }
+
+        :global(.submenu li) {
+            width: 100% !important;
+            display: block !important;
+            flex-direction: column !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Asegurar que el contenedor right funcione correctamente en desktop */
+        :global(.right-container) {
+            display: flex;
+            align-items: center;
+            flex: 0 1 auto;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+    }
+</style>

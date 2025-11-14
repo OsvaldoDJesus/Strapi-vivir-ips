@@ -1,0 +1,398 @@
+---
+import SEO from '../components/SEO.astro';
+import ImagePreload from '../components/ImagePreload.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Whatsapp from '../components/Whatsapp.astro';
+import '../styles/globals.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string | URL;
+  preloadImages?: string[];
+  noIndex?: boolean;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Font Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+    <SEO {...props} />
+    <ImagePreload preloadImages={props.preloadImages} />
+  </head>
+  <body>
+    <Header />
+
+    <slot />
+
+    <Whatsapp />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+	:root {
+		--primary-color: #19b8e9;
+		--secondary-color: #0e3551;
+
+		--main-color: black;
+		--accent-color: black;
+		--background-color: white;
+		--foreground-color: white;
+		--shadow: hsla(0, 0%, 0%, 0.1);
+		--main-font: 'Roboto', serif;
+		--secondary-font: 'National Park', sans-serif;
+		
+		/* TIPOGRAFÍA ESTANDARIZADA - Basada en nosotros.astro */
+		/* Tamaños Desktop (≥1080px) */
+		--h1-size-desktop: 2.2rem;
+		--h2-size-desktop: 1.5rem;
+		--h3-size-desktop: 1.3rem;
+		--p-size-desktop: 1.1em;
+		--p-small-size-desktop: 0.9em;
+		
+		/* Tamaños Mobile (<1080px) */
+		--h1-size-mobile: 1.8rem;
+		--h2-size-mobile: 1.3rem;
+		--h3-size-mobile: 1.1rem;
+		--p-size-mobile: 1rem;
+		--p-small-size-mobile: 0.85em;
+		
+		/* Espaciado estandarizado */
+		--section-margin-desktop: 60px auto 40px auto;
+		--section-margin-mobile: 40px auto 30px auto;
+		--section-padding-desktop: 0 20px;
+		--section-padding-mobile: 0 15px;
+		--title-margin-bottom: 2rem;
+		--content-gap: 3rem;
+		--card-gap: 2rem;
+		
+		/* Pesos de fuente */
+		--light-weight: 400;
+		--regular-weight: 500;
+		--bold-weight: 600;
+		--light-radius: 4px;
+		--regular-radius: 12px;
+
+		--desktop-section-width: 1200px;
+		--tablet-section-width: 760px;
+		--mobile-section-width: 360px;
+		--spacing: 20px;
+
+		/* Variables responsive existentes */
+		--mobile-padding: 15px;
+		--mobile-margin: 10px;
+		--mobile-header-height: 136px;
+		--mobile-footer-padding: 20px;
+		--mobile-button-size: 44px;
+		--mobile-icon-size: 24px;
+		--mobile-menu-height: 300px;
+		--mobile-transition: 0.3s ease;
+		--mobile-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		--mobile-border-radius: 8px;
+	}
+
+	/* ============================================
+	   TIPOGRAFÍA GLOBAL ESTANDARIZADA
+	   ============================================ */
+
+	/* Estilos base para encabezados */
+	h1, h2, h3 {
+		font-family: var(--main-font);
+		font-weight: var(--regular-weight);
+		color: var(--secondary-color);
+		line-height: 1.2;
+		margin: 0;
+	}
+
+	/* Párrafos */
+	p {
+		font-family: var(--secondary-font);
+		font-weight: var(--light-weight);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	/* MOBILE FIRST - Tamaños para móviles (<1080px) */
+	h1 {
+		font-size: var(--h1-size-mobile);
+	}
+
+	h2 {
+		font-size: var(--h2-size-mobile);
+	}
+
+	h3 {
+		font-size: var(--h3-size-mobile);
+	}
+
+	p {
+		font-size: var(--p-size-mobile);
+	}
+
+	/* Clase especial para párrafos pequeños */
+	.p-small {
+		font-size: var(--p-small-size-mobile);
+	}
+
+	/* DESKTOP - Tamaños para desktop (≥1080px) */
+	@media screen and (min-width: 1080px) {
+		h1 {
+			font-size: var(--h1-size-desktop);
+		}
+
+		h2 {
+			font-size: var(--h2-size-desktop);
+		}
+
+		h3 {
+			font-size: var(--h3-size-desktop);
+		}
+
+		p {
+			font-size: var(--p-size-desktop);
+		}
+
+		.p-small {
+			font-size: var(--p-small-size-desktop);
+		}
+	}
+
+	/* Clase para títulos de sección estandarizados */
+	.section-title {
+		position: relative;
+		font-size: var(--h1-size-mobile);
+		margin-bottom: var(--title-margin-bottom);
+		color: var(--secondary-color);
+	}
+
+	.section-title::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 80px;
+		height: 4px;
+		background-color: var(--primary-color);
+	}
+
+	@media screen and (min-width: 1080px) {
+		.section-title {
+			font-size: var(--h1-size-desktop);
+		}
+	}
+
+	/* Contenedores estandarizados */
+	.standard-section {
+		max-width: 1200px;
+		margin: var(--section-margin-mobile);
+		padding: var(--section-padding-mobile);
+	}
+
+	@media screen and (min-width: 1080px) {
+		.standard-section {
+			margin: var(--section-margin-desktop);
+			padding: var(--section-padding-desktop);
+		}
+	}
+
+	/* ============================================
+	   UTILIDADES ADICIONALES
+	   ============================================ */
+
+	/* Texto centrado */
+	.text-center {
+		text-align: center;
+	}
+
+	/* Espaciado estandarizado */
+	.mb-content {
+		margin-bottom: var(--content-gap);
+	}
+
+	.mb-card {
+		margin-bottom: var(--card-gap);
+	}
+
+	/* Color de texto estandarizado */
+	.text-primary {
+		color: var(--primary-color);
+	}
+
+	.text-secondary {
+		color: var(--secondary-color);
+	}
+
+	/* ============================================
+	   BOTONES GLOBALES ESTANDARIZADOS
+	   ============================================ */
+
+	/* Estilo base para botones estándar (excepto contacto) */
+	button, 
+	.btn, 
+	a[class*="button"]:not(.cta-button) {
+		border-radius: var(--regular-radius) !important;
+		transition: all 0.3s ease;
+	}
+
+	/* Todos los botones CTA - Tamaño y colores estandarizados */
+	.cta-button {
+		display: inline-block !important;
+		background-color: #19b8e9 !important;
+		color: white !important;
+		font-weight: 600 !important;
+		padding: 12px 24px !important;
+		border-radius: var(--regular-radius) !important;
+		text-decoration: none !important;
+		transition: all 0.3s ease !important;
+		border: none !important;
+		cursor: pointer !important;
+	}
+
+	.cta-button:hover {
+		background-color: #2980b9 !important;
+	}
+
+	/* Excepción: Solo el botón de contacto del navbar mantiene su estilo original */
+	.nav-cta .cta-button,
+	nav .nav-cta .cta-button,
+	.nav-menu .nav-cta .cta-button {
+		background-color: var(--secondary-color) !important;
+		padding: 16px 28px !important;
+		border-radius: 25px !important;
+		font-weight: var(--regular-weight) !important;
+		box-shadow: 0 2px 8px rgba(14, 53, 81, 0.2) !important;
+	}
+
+	.nav-cta .cta-button:hover,
+	nav .nav-cta .cta-button:hover,
+	.nav-menu .nav-cta .cta-button:hover {
+		background-color: var(--primary-color) !important;
+		transform: translateY(-2px) !important;
+		box-shadow: 0 4px 12px rgba(25, 184, 233, 0.3) !important;
+	}
+
+	* {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+
+		font-family: var(--secondary-font);
+		font-optical-sizing: auto;
+		font-weight: var(--light-weight);
+		font-style: normal;
+		font-variation-settings: 'wdth' 400;
+	}
+
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
+
+	body {
+		position: relative;
+	}
+
+	.mobile {
+		display: block;
+	}
+
+	.desktop {
+		display: none;
+	}
+
+	.contained {
+		max-width: var(--mobile-section-width);
+		margin: auto;
+	}
+
+	/* Mantener estilos existentes */
+	.mobile-container {
+		padding: var(--mobile-padding);
+		margin: 0 auto;
+		width: 100%;
+		max-width: var(--mobile-section-width);
+	}
+
+	.mobile-hidden {
+		display: none;
+	}
+
+	.mobile-only {
+		display: block;
+	}
+
+	.mobile-touch-target {
+		min-height: var(--mobile-button-size);
+		min-width: var(--mobile-button-size);
+	}
+
+	.mobile-menu {
+		max-height: var(--mobile-menu-height);
+		overflow-y: auto;
+	}
+
+	@media screen and (min-width: 769px) {
+		.mobile-only {
+			display: none;
+		}
+
+		.mobile-hidden {
+			display: block;
+		}
+
+		.contained {
+			max-width: var(--desktop-section-width);
+		}
+
+		.mobile-menu {
+			max-height: none;
+			overflow-y: visible;
+		}
+	}
+
+	/* Media Query para tablets */
+	@media screen and (min-width: 481px) and (max-width: 768px) {
+		.contained {
+			max-width: var(--tablet-section-width);
+		}
+	}
+
+	/* Media Query para móviles pequeños */
+	@media screen and (max-width: 480px) {
+		html {
+			font-size: 14px;
+		}
+
+		.contained {
+			max-width: var(--mobile-section-width);
+			padding: 0 var(--mobile-padding);
+		}
+	}
+</style>

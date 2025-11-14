@@ -1,0 +1,151 @@
+---
+import LogoCarouselNew from "./LogoCarouselNew";
+---
+
+<div class="logos-wrapper-container">
+    <LogoCarouselNew client:load />
+</div>
+
+<style>
+    .logos-wrapper-container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 40px 80px;
+        background: white;
+    }
+
+    /* Gradientes laterales para el efecto de fade */
+    .logos-wrapper-container:before,
+    .logos-wrapper-container:after {
+        position: absolute;
+        top: 0;
+        width: 80px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .logos-wrapper-container:before {
+        left: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+    }
+
+    .logos-wrapper-container:after {
+        right: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+    }
+
+    /* Estilos globales para el carousel */
+    :global(.logo-carousel-container) {
+        position: relative;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    :global(.logo-item) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        min-height: 80px;
+    }
+
+    /* Estilos para los botones de navegación */
+    :global(.carousel-nav-button) {
+        background-color: white !important;
+        border: 2px solid #e5e7eb !important;
+        color: #6b7280 !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    :global(.carousel-nav-button:hover:not(:disabled)) {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(25, 184, 233, 0.3) !important;
+    }
+
+    :global(.carousel-nav-button:disabled) {
+        opacity: 0.3 !important;
+        cursor: not-allowed !important;
+        color: #d1d5db !important;
+    }
+
+    :global(.carousel-nav-button svg) {
+        transition: color 0.3s ease !important;
+    }
+
+    :global(.left-button) {
+        left: -50px !important;
+    }
+
+    :global(.right-button) {
+        right: -50px !important;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 1079px) {
+        .logos-wrapper-container {
+            padding: 40px 20px;
+        }
+
+        .logos-wrapper-container:before,
+        .logos-wrapper-container:after {
+            display: none;
+        }
+
+        :global(.left-button) {
+            left: -45px !important;
+        }
+
+        :global(.right-button) {
+            right: -45px !important;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .logos-wrapper-container {
+            padding: 20px 10px;
+            margin: 40px auto;
+            max-width: calc(100% - 100px);
+        }
+
+        :global(.carousel-nav-button) {
+            width: 36px !important;
+            height: 36px !important;
+        }
+
+        :global(.left-button) {
+            left: -40px !important;
+        }
+
+        :global(.right-button) {
+            right: -40px !important;
+        }
+
+        :global(.logo-item) {
+            min-height: 60px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .logos-wrapper-container {
+            padding: 20px 10px;
+            margin: 40px auto;
+            max-width: calc(100% - 80px);
+        }
+
+        :global(.logo-item img) {
+            max-height: 50px !important;
+            height: 50px !important;
+        }
+    }
+</style>

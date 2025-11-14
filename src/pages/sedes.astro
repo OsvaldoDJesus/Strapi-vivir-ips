@@ -1,0 +1,1105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroBg from "../assets/hero-bg.jpg";
+---
+
+<Layout
+  title="Sedes | Vivir IPS"
+  description="Encuentre nuestras sedes en Colombia. Presentes en Bogotá, Barranquilla, Bucaramanga y más ciudades."
+  image="/hero-bg.jpg"
+  preloadImages={['/hero-bg-low.jpg']}
+>
+    <section class="hero">
+        <div class="container">
+            <div class="bg">
+                <img 
+                    src={HeroBg.src}
+                    style="background-image: url(/public/hero-bg-low.jpg);"
+                    alt="Hero background"
+                    class="bg-image"
+                    fetchpriority="high"
+                />
+                <div class="black-overlay">
+                    <div class="overlay"></div>
+                </div>
+            </img>
+        </div>
+    </section>
+    <section class="sedes standard-section">
+        <h1 class="section-title">Nuestras Sedes</h1>
+        <div id="store-locator">
+            <div class="location">
+                <div class="sidebar">
+                    <div id="stores-preview"></div>
+                </div>
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script is:inline>
+    ((g) => {
+        var h,
+            a,
+            k,
+            p = "The Google Maps JavaScript API",
+            c = "google",
+            l = "importLibrary",
+            q = "__ib__",
+            m = document,
+            b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+            r = new Set(),
+            e = new URLSearchParams(),
+            u = () =>
+                h ||
+                (h = new Promise(async (f, n) => {
+                    await (a = m.createElement("script"));
+                    e.set("libraries", [...r] + "");
+                    for (k in g)
+                        e.set(
+                            k.replace(
+                                /[A-Z]/g,
+                                (t) => "_" + t[0].toLowerCase(),
+                            ),
+                            g[k],
+                        );
+                    e.set("callback", c + ".maps." + q);
+                    a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                    d[q] = f;
+                    a.onerror = () => (h = n(Error(p + " could not load.")));
+                    a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                    m.head.append(a);
+                }));
+        d[l]
+            ? console.warn(p + " only loads once. Ignoring:", g)
+            : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+    })({
+        key: "AIzaSyCBEI80A1P10vrkXnJyG6jwGXi1CkzUbY0",
+        v: "weekly",
+        // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+        // Add other bootstrap parameters as needed, using camel case.
+    });
+
+    const storeLocations = [
+        {
+            name: "BARRANQUILLA",
+            category: "Oficina",
+            address: "Calle 70B # 41 - 187 Torre B Piso 1 Local 1",
+            city: "Barranquilla",
+            state: "Barranquilla",
+            phone: "6013286372 - 333-0334209 - 310-3505383",
+            image: "",
+            website: "",
+            codigo: "800105602",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 10.9899694,
+                lng: -74.806351,
+            },
+            enabled: true,
+        },
+        {
+            name: "Bogotá – Country sur",
+            category: "Oficina",
+            address: "Carrera 10 # 26 - 34 Sur",
+            city: "BOGOTÁ",
+            state: "Bogotá D.C",
+            phone: "6013286372 - 333-0334209 Count.Sur: 313-8056595 - Cap.Salud: 350-2949687",
+            image: "",
+            website: "",
+            codigo: "1100105800",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 4.5723281,
+                lng: -74.0974809,
+            },
+            enabled: true,
+        },
+        {
+            name: "Bogotá - Castellana",
+            category: "Oficina",
+            address: "Carrera 49 # 94 - 80",
+            city: "BOGOTÁ",
+            state: "Bogotá D.C",
+            phone: "6013286372 - 333-0334209 - 310-3972849",
+            image: "",
+            website: "",
+            codigo: "1100105800",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 4.6836344,
+                lng: -74.0612849,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede TUNJA",
+            category: "Oficina",
+            address: "Carrera 1F # 39 - 76 Oficina 504 y 506",
+            city: "TUNJA",
+            state: "Boyacá",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "1500103380",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 5.549689,
+                lng: -73.347806,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede MANIZALES",
+            category: "Oficina",
+            address: "Calle 50 # 25 - 65 Oficina 208",
+            city: "MANIZALES",
+            state: "Caldas",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "1700103346",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 5.0620577,
+                lng: -75.4986721,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede YOPAL",
+            category: "Oficina",
+            address: "Carrera 25 # 11 - 23 Local 101 y 102",
+            city: "YOPAL",
+            state: "Casanare",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "8500107644",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 5.348487,
+                lng: -72.39464,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede SOACHA",
+            category: "Oficina",
+            address: "Carrera 10 # 13A - 33",
+            city: "SOACHA",
+            state: "Cundinamarca",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "2575402661",
+            coordinates: {
+                // Coordenadas aproximadas del municipio de Soacha
+                lat: 4.578054,
+                lng: -74.214444,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede NEIVA",
+            category: "Oficina",
+            address: "Calle 23 # 7 - 20",
+            city: "NEIVA",
+            state: "Huila",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "4100102888",
+            coordinates: {
+                // Coordenadas aproximadas de la ciudad de Neiva
+                lat: 2.9462457,
+                lng: -75.2606435,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede VILLAVICENCIO",
+            category: "Oficina",
+            address: "Calle 37 # 41 - 63",
+            city: "VILLAVICENCIO",
+            state: "Meta",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "5000102310",
+            coordinates: {
+                // Coordenadas aproximadas de la ciudad de Villavicencio
+                lat: 4.151382,
+                lng: -73.637688,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede CÚCUTA",
+            category: "Oficina",
+            address: "Av. 1 Este # 17 - 73 C.E. Cons. 1102-1103",
+            city: "CÚCUTA",
+            state: "Norte de Santander",
+            phone: "6013286372 - 301-1268147",
+            image: "",
+            website: "",
+            codigo: "5400103433",
+            coordinates: {
+                // Coordenadas Aporximadas
+                lat: 7.8801424,
+                lng: -72.4993997,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede BUCARAMANGA",
+            category: "Oficina",
+            address: "Calle 34 # 18 - 17 Piso 3 Centro Comercial Kalifa",
+            city: "BUCARAMANGA",
+            state: "Santander",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "6800170952",
+            coordinates: {
+                // Coordenadas específicas no encontradas
+                lat: 7.120348,
+                lng: -73.1243544,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede IBAGUÉ",
+            category: "Oficina",
+            address: "Carrera 2 # 12 - 44 Oficina 801-803-810-812",
+            city: "IBAGUÉ",
+            state: "Tolima",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "7300103361",
+            coordinates: {
+               
+                lat: 4.440071,
+                lng: -75.2426426,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede FLORENCIA",
+            category: "Oficina",
+            address: "Carrera 9 # 9 - 30",
+            city: "FLORENCIA",
+            state: "Caquetá",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "1800102880",
+            coordinates: {
+                lat: 1.6123434,
+                lng: -75.6091638,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede GIRARDOT",
+            category: "Oficina",
+            address: "Calle 19 # 8 - 52",
+            city: "GIRARDOT",
+            state: "Cundinamarca",
+            phone: "6013286372 - 333-0334209",
+            image: "",
+            website: "",
+            codigo: "2500103361",
+            coordinates: {
+                lat: 4.296336,
+                lng: -74.8042215,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede ARMENIA",
+            category: "Oficina",
+            address: "Carrera 13 # 1N - 35 Clínica Central del Quindío 419",
+            city: "ARMENIA",
+            state: "Quindío",
+            phone: "6013286372 - 333-0334209 - 310-7167111",
+            image: "",
+            website: "",
+            codigo: "6300103433",
+            coordinates: {
+                lat: 4.5447083,
+                lng: -75.6617311,
+            },
+            enabled: true,
+        },
+        {
+            name: "Sede PEREIRA",
+            category: "Oficina",
+            address: "Calle 4 Norte # 13 - 25",
+            city: "PEREIRA",
+            state: "Risaralda",
+            phone: "6013286372 - 333-0334209 - 312-2118208",
+            image: "",
+            website: "",
+            codigo: "6600103440",
+            coordinates: {
+                lat: 4.7924422,
+                lng: -75.7275135,
+            },
+            enabled: true,
+        },
+    ];
+
+    let map;
+    let markers = [];
+    let infoWindow;
+    let autocomplete;
+
+    let filteredStores = [];
+
+    function toCapitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    async function initMap() {
+        const mapCenter = { lat: 39.1031, lng: -84.512 };
+        const { Map } = await google.maps.importLibrary("maps");
+        await google.maps.importLibrary("places");
+
+        map = new Map(document.getElementById("map"), {
+            zoom: 1,
+            center: mapCenter,
+            mapId: "dealers_map",
+        });
+        infoWindow = new google.maps.InfoWindow();
+        // Bogota location
+        await handleSearch(4.711, -74.0721);
+    }
+
+    function addStorePreview(store, marker) {
+        const {
+            name,
+            category,
+            address,
+            city,
+            state,
+            phone,
+            website,
+            coordinates,
+            enabled,
+            zip,
+        } = store;
+
+        const container = document.createElement("div");
+        container.setAttribute("data-category", "local");
+        container.classList.add("store-preview");
+
+        const leftContent = document.createElement("div");
+        const img = document.createElement("div");
+
+        img.classList.add("store-img");
+
+        leftContent.appendChild(img);
+
+        const rightContent = document.createElement("div");
+        const title = document.createElement("h2");
+        const location = document.createElement("p");
+        const locationCity = document.createElement("p");
+        const locationPhone = document.createElement("p");
+        const btn = document.createElement("button");
+
+        title.style.fontSize = "1em";
+        location.style.fontSize = "0.8em";
+        locationCity.style.fontSize = "0.8em";
+        locationCity.style.marginTop = "0.8em";
+        locationPhone.style.fontSize = "0.8em";
+
+        //title.textContent = name
+        title.innerHTML = toCapitalize(name);
+
+        location.innerHTML = toCapitalize(address);
+        if (city && state)
+            locationCity.textContent = toCapitalize(city) + ", " + state;
+        //locationState.textContent = state
+        locationPhone.textContent = "PBX: " + phone;
+
+        btn.textContent = "¿Como llegar?";
+
+        btn.setAttribute("data-lat", coordinates.lat);
+        btn.setAttribute("data-lng", coordinates.lng);
+
+        btn.addEventListener("click", (e) => {
+            requestLocation(e.target.dataset.lat, e.target.dataset.lng);
+        });
+
+        rightContent.classList.add("content");
+        rightContent.appendChild(title);
+
+        rightContent.appendChild(location);
+        if (city && state) rightContent.appendChild(locationCity);
+        //rightContent.appendChild(locationState)
+
+        rightContent.appendChild(locationPhone);
+        // rightContent.appendChild(btn);
+
+        container.appendChild(leftContent);
+        container.appendChild(rightContent);
+
+        container.addEventListener("click", () => {
+            // handleSearch(coordinates.lat, coordinates.lng)
+            // This will call the marker's click event which shows the info window
+            google.maps.event.trigger(marker, "click");
+        });
+
+        document.getElementById("stores-preview").appendChild(container);
+    }
+
+    // Add markers for each store
+    async function addStoreMarkers() {
+        // Cleaning
+        document.getElementById("stores-preview").replaceChildren();
+        clearMarkers();
+
+        const { AdvancedMarkerElement } =
+            await google.maps.importLibrary("marker");
+
+        filteredStores.forEach((store) => {
+            if (!store.enabled) return;
+
+            const creImg = document.createElement("img");
+            creImg.style.height = "50px";
+            creImg.src = "";
+
+            const marker = new AdvancedMarkerElement({
+                position: {
+                    lat: store.coordinates.lat,
+                    lng: store.coordinates.lng,
+                },
+                map: map,
+                title: store.name,
+            });
+
+            addStorePreview(store, marker);
+
+            const infoContent = `
+                           <div class="info-window">
+                               <div class="info-content">
+                               <h3>${store.name}</h3>
+                               <p>${store.address}</p>
+                               ${store.phone ? `<p><b style="display: block; margin-bottom: 0px;">Telefono:</b> <a href="tel:${store.phone}">${store.phone}</a></p>` : ""} 
+                               <p> Horario 7 A.M - 5P.M</p>
+                               </div
+                           </div >`;
+
+            marker.addListener("click", () => {
+                infoWindow.setContent(infoContent);
+                infoWindow.open(map, marker);
+            });
+
+            markers.push(marker);
+        });
+
+        // console.log("markers", markers)
+    }
+
+    // Clear existing markers
+    function clearMarkers() {
+        markers.forEach((marker) => marker.setMap(null));
+        markers = [];
+    }
+
+    async function handleSearch(lat, lng, queryText = null) {
+        // Added queryText for flexibility
+        // Import the Place class from the places library
+        const { Place } = await google.maps.importLibrary("places");
+        const { spherical } = await google.maps.importLibrary("geometry");
+        // const service = new PlacesService(map); // OLD: Remove
+
+        if (lat && lng) {
+            const location = new google.maps.LatLng(lat, lng);
+            map.setCenter(location);
+            map.setZoom(10);
+
+            // Find stores within a certain radius (ensure 'filteredStores' and 'storeLocations' are correctly defined and scoped)
+            // Assuming storeLocations is your master list of all stores.
+            const nearbyStores = storeLocations.filter((store) => {
+                // Use storeLocations for fresh filtering
+                const distance = spherical.computeDistanceBetween(
+                    new google.maps.LatLng(
+                        store.coordinates.lat,
+                        store.coordinates.lng,
+                    ),
+                    location,
+                );
+                return distance <= 1000000; // 1000 km radius
+            });
+
+            filteredStores = nearbyStores; // Update global/scoped filteredStores
+            await addStoreMarkers();
+            return;
+        }
+
+        // Use passed queryText or get it from input.
+        // If PlaceAutocompleteElement is used, its .value gives the current text.
+        const query =
+            queryText || document.getElementById("search-input").value;
+
+        if (!query) {
+            // Removed !(lat && lng) because that case is handled above
+            return alert("Please enter a search term or select a location.");
+        }
+
+        const request = {
+            textQuery: query,
+            // Fields you want from the search results.
+            // 'name' becomes 'displayName', 'geometry.location' becomes 'location'
+            fields: ["displayName", "location", "formattedAddress"],
+            // You can add more options like region, language, etc.
+            // maxResultCount: 1, // If you only want the top result
+        };
+
+        try {
+            const response = await Place.searchByText(request); // New API call
+
+            if (response.places && response.places.length > 0) {
+                const place = response.places[0]; // Take the first result
+
+                if (place.location) {
+                    // The location from searchByText is a LatLngLiteral
+                    const searchLocation = new google.maps.LatLng(
+                        place.location.lat,
+                        place.location.lng,
+                    );
+                    map.setCenter(searchLocation);
+                    map.setZoom(10);
+
+                    // Find stores within a certain radius from the new searched location
+                    const nearbyStores = storeLocations.filter((store) => {
+                        // Use storeLocations for fresh filtering
+                        const distance = spherical.computeDistanceBetween(
+                            new google.maps.LatLng(
+                                store.coordinates.lat,
+                                store.coordinates.lng,
+                            ),
+                            searchLocation,
+                        );
+                        return distance <= 200000; // 200 km radius
+                    });
+
+                    filteredStores = nearbyStores; // Update global/scoped filteredStores
+                    await addStoreMarkers();
+                } else {
+                    alert(
+                        "The location found does not have specific coordinates.",
+                    );
+                }
+            } else {
+                alert(
+                    "No locations found matching your search near your area of interest.",
+                );
+            }
+        } catch (error) {
+            console.error("Error during place search:", error);
+            // Handle specific error status if needed, e.g. error.code
+            alert("An error occurred while searching for the location.");
+        }
+    }
+
+    function requestLocation(dLat, dLng) {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    // Corrected Google Maps Directions URL
+                    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${dLat},${dLng}`;
+                    window.open(mapsUrl, "_blank");
+                },
+                (error) => {
+                    // ... (your existing error handling) ...
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            console.error("Permission denied");
+                            alert("Location access was denied.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            console.error("Location unavailable", error);
+                            // alert('Please try with other browser, ex. Chrome.'); // This might not always be the browser's fault
+                            alert(
+                                "Could not determine your current location. Please ensure location services are enabled.",
+                            );
+                            break;
+                        case error.TIMEOUT:
+                            console.error("Request timed out");
+                            alert(
+                                "Location request timed out. Please try again.",
+                            );
+                            break;
+                        default:
+                            console.error("An unknown error occurred", error);
+                            alert(
+                                "An unknown error occurred while trying to get your location.",
+                            );
+                    }
+                },
+            );
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+    }
+
+    (async () => {
+        await initMap();
+    })().catch((error) => {
+        console.error(error);
+    });
+</script>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgb(0, 0, 0, 0.3);
+
+        z-index: 10;
+    }
+
+    .hero .overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+        z-index: 11;
+    }
+
+    /* Los estilos de .sedes y .section-title ahora vienen del Layout global */
+
+    /*
+/////////////////////////////////////
+//////// External Google Maps CSS
+////////////////////////////////////
+*/
+
+    :global(.gm-style .gm-style-iw-c) {
+        padding: 0;
+        padding: 20px;
+        max-height: fit-content !important;
+        min-width: 220px !important;
+        max-width: 620px !important;
+    }
+
+    :global(.gm-style-iw-chr) {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        right: 0;
+    }
+
+    :global(.gm-style .gm-style-iw-d) {
+        overflow: auto !important;
+        max-height: fit-content !important;
+    }
+
+    /*
+/////////////////////////////////////
+//////// Dealer locator CSS
+////////////////////////////////////
+*/
+
+    /*
+//////// Main Container
+*/
+
+    #store-locator {
+        position: relative;
+        width: 100%;
+        height: 700px;
+        max-height: 700px;
+        margin-top: 3rem;
+        margin-bottom: 40px;
+    }
+
+    #store-locator .filters ul {
+        display: flex;
+        padding-left: 20px;
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    #store-locator .filters ul li {
+        display: block;
+        position: relative;
+        border: none;
+        background-color: rgba(136, 139, 141, 0.1);
+        border-radius: 4px;
+        font-size: 0.9em;
+
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+    }
+
+    #store-locator.filters ul li input {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        -ms-appearance: none !important;
+        -o-appearance: none !important;
+        appearance: none !important;
+
+        left: 0;
+        top: 0;
+        cursor: pointer;
+    }
+
+    label {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: pointer !important;
+        padding: 2px 10px;
+
+        display: flex;
+        align-items: center;
+    }
+
+    label img {
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    input[type="radio"] + label:before {
+        content: none !important;
+    }
+
+    #store-locator .filters ul li:has(input[type="radio"]:checked) {
+        background-color: #512d6d;
+        color: white;
+    }
+
+    @media screen and (max-width: 768px) {
+        #store-locator .filters ul li {
+            padding: 4px;
+        }
+    }
+
+    /*
+//////// Map & Sidebar Container
+*/
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    .location {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: calc(100% - 60px);
+        padding: 20px;
+        gap: 10px;
+    }
+
+    .location .sidebar {
+        width: 40%;
+        height: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+
+        position: relative;
+        overflow-y: scroll;
+    }
+
+    /* width */
+    .location .sidebar::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    .location .sidebar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    .location .sidebar::-webkit-scrollbar-thumb {
+        background: hsl(0, 0%, 80%);
+    }
+
+    /* Handle on hover */
+    .location .sidebar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .location .map-container {
+        width: 60%;
+        height: 100%;
+    }
+
+    .info-window {
+    }
+
+    :global(.info-window .info-content) {
+        padding: 10px;
+    }
+
+    :global(.info-window .info-content h3) {
+        margin: 0px;
+    }
+
+    :global(.info-window .info-content p) {
+        display: block;
+        font-size: 0.85em;
+    }
+
+    :global(.info-window .info-content button) {
+        margin: 10px 0px;
+        padding: 6px 10px;
+        background-color: #512d6d;
+        color: white;
+        border: none;
+    }
+
+    #stores-preview {
+        padding: 10px;
+        position: relative;
+    }
+
+    :global(.store-preview) {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background-color: white;
+        align-items: flex-start;
+    }
+
+    :global(.store-preview .store-img) {
+        width: 120px;
+        min-width: 120px;
+        height: 120px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("../assets/logo.png");
+        flex-shrink: 0;
+    }
+
+    :global(.store-preview:hover) {
+        background-color: hsl(0, 0%, 95%);
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    :global(.store-preview .content) {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    :global(.store-preview .content h2) {
+        font-size: 1.3em;
+        margin-bottom: 12px;
+        font-weight: bold;
+        padding-bottom: 0;
+        text-transform: capitalize;
+        color: #2c3e50;
+        line-height: 1.2;
+    }
+
+    :global(.store-preview .content .cat-wrapper) {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0px;
+    }
+
+    :global(.store-preview .content .cat-wrapper img) {
+        width: 20px;
+    }
+
+    :global(.store-preview .content span) {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        border-radius: 6px;
+        font-size: 0.85em;
+    }
+
+    :global(.store-preview .content p) {
+        padding-bottom: 0px !important;
+        height: auto;
+        margin-bottom: 8px;
+        font-size: 0.9em;
+        line-height: 1.6;
+        color: #555;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    :global(.store-preview .content button) {
+        border: none;
+        border-radius: 6px;
+        margin-top: 12px;
+        margin-bottom: 0px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease;
+        align-self: flex-start;
+    }
+
+    :global(.store-preview .content button:hover) {
+        background-color: #2980b9;
+    }
+
+    :global(.store-preview button .directions-img) {
+        height: 30px;
+    }
+
+    @media screen and (max-width: 1100px) {
+        .location .sidebar {
+            width: 50%;
+        }
+
+        .location .map-container {
+            width: 50%;
+        }
+
+        :global(.store-preview) {
+            gap: 15px;
+            padding: 15px;
+        }
+
+        :global(.store-preview .store-img) {
+            width: 100px;
+            min-width: 100px;
+            height: 100px;
+        }
+
+        :global(.store-preview .content h2) {
+            font-size: 1.1em;
+        }
+
+        :global(.store-preview .content p) {
+            font-size: 0.85em;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        #store-locator {
+            max-height: 300vh;
+            height: 1000px;
+        }
+
+        .location {
+            flex-direction: column-reverse;
+            width: 100%;
+            padding-bottom: 40px;
+        }
+
+        .location .sidebar {
+            width: 100%;
+            height: 500px;
+        }
+
+        .location .map-container {
+            width: 100%;
+            height: 50%;
+        }
+
+        .filters ul {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        :global(.store-preview) {
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        :global(.store-preview .store-img) {
+            width: 100%;
+            min-width: unset;
+            height: 100px;
+        }
+
+        :global(.store-preview .content h2) {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        :global(.store-preview .content p) {
+            font-size: 0.9em;
+            margin-bottom: 6px;
+        }
+
+        :global(.store-preview .content button) {
+            width: 100%;
+            padding: 12px 16px;
+        }
+    }
+</style>

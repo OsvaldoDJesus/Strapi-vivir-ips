@@ -1,0 +1,525 @@
+---
+import Layout from '../layouts/Layout.astro';
+import hero03 from '../assets/hero03.jpg';
+---
+
+<Layout
+  title="PQRS | Vivir IPS"
+  description="Sistema de Peticiones, Quejas, Reclamos y Sugerencias. Ayúdenos a mejorar nuestros servicios."
+  image="/hero03.jpg"
+  preloadImages={['/hero03-low.jpg']}
+>
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                
+                <img 
+                    class="bg-image"
+                    src={hero03.src}
+                    style="background-image: url('/hero03-low.jpg');"
+                    fetchpriority="high"
+                    alt="Hero background"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </img>
+        </div>
+    </section>
+    <section class='pqrs standard-section'>
+        <div class='container'>
+            <div class='pqrs-container'>
+                <div class='info-column'>
+                    <div class='info-icon'>
+                        <i class='fas fa-comments'></i>
+                        <h1>Sistema PQRS</h1>
+                    </div>
+
+                    <p>
+                        Nuestro sistema de Peticiones, Quejas, Reclamos y
+                        Sugerencias (PQRS) está diseñado para escuchar su voz y
+                        mejorar continuamente nuestros servicios.
+                    </p>
+
+                    <h2>¿Para qué sirve?</h2>
+                    <ul>
+                        <li>
+                            <i class='fas fa-check-circle'></i>
+                            <span
+                                >Presentar peticiones respetuosas sobre nuestros
+                                servicios</span
+                            >
+                        </li>
+                        <li>
+                            <i class='fas fa-exclamation-circle'></i>
+                            <span
+                                >Expresar inconformidades o quejas sobre la
+                                atención recibida</span
+                            >
+                        </li>
+                        <li>
+                            <i class='fas fa-ban'></i>
+                            <span
+                                >Formalizar reclamos cuando consideremos que se
+                                ha vulnerado un derecho</span
+                            >
+                        </li>
+                        <li>
+                            <i class='fas fa-lightbulb'></i>
+                            <span
+                                >Compartir sugerencias para mejorar nuestros
+                                procesos y servicios</span
+                            >
+                        </li>
+                    </ul>
+
+                    <h2>Confidencialidad</h2>
+                    <p>
+                        Toda la información que nos proporcione será tratada con
+                        absoluta confidencialidad, siguiendo nuestra política de
+                        protección de datos personales.
+                    </p>
+                </div>
+
+                <div class='form-column'>
+                    <h1>Formulario PQRS</h1>
+                    <form id='pqrsForm'>
+                        <div class='form-group'>
+                            <label for='tipoSolicitud' class='required'
+                                >Tipo de solicitud</label
+                            >
+                            <select
+                                id='tipoSolicitud'
+                                name='tipoSolicitud'
+                                required
+                            >
+                                <option value=''>Seleccione una opción</option>
+                                <option value='peticion'>Petición</option>
+                                <option value='queja'>Queja</option>
+                                <option value='reclamo'>Reclamo</option>
+                                <option value='sugerencia'>Sugerencia</option>
+                            </select>
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='nombre' class='required'
+                                >Nombres y apellidos</label
+                            >
+                            <input
+                                type='text'
+                                id='nombre'
+                                name='nombre'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='tipoDocumento' class='required'
+                                >Tipo de documento</label
+                            >
+                            <select
+                                id='tipoDocumento'
+                                name='tipoDocumento'
+                                required
+                            >
+                                <option value=''>Seleccione una opción</option>
+                                <option value='cc'>Cédula de Ciudadanía</option>
+                                <option value='ce'>Cédula de Extranjería</option
+                                >
+                                <option value='ti'>Tarjeta de Identidad</option>
+                                <option value='pasaporte'>Pasaporte</option>
+                            </select>
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='numeroDocumento' class='required'
+                                >Número de documento</label
+                            >
+                            <input
+                                type='text'
+                                id='numeroDocumento'
+                                name='numeroDocumento'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='email' class='required'
+                                >Correo electrónico</label
+                            >
+                            <input
+                                type='email'
+                                id='email'
+                                name='email'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='telefono' class='required'
+                                >Teléfono de contacto</label
+                            >
+                            <input
+                                type='tel'
+                                id='telefono'
+                                name='telefono'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='asunto' class='required'>Asunto</label>
+                            <input
+                                type='text'
+                                id='asunto'
+                                name='asunto'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='mensaje' class='required'>Mensaje</label
+                            >
+                            <textarea id='mensaje' name='mensaje' required
+                            ></textarea>
+                        </div>
+
+
+                        <button type='submit' class='submit-btn'
+                            >Enviar PQRS</button
+                        >
+
+                        <p class='disclaimer'>
+                            Los campos marcados con * son obligatorios. La
+                            información proporcionada será tratada de acuerdo
+                            con nuestra política de privacidad.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    .hero .overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+        z-index: 11;
+    }
+
+    .pqrs .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 15px;
+    }
+
+    .pqrs-container {
+        display: flex;
+        flex-wrap: wrap;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-column {
+        flex: 1;
+        background: linear-gradient(135deg, #3498db, #1a5276);
+        color: white;
+        padding: 40px;
+        min-width: 300px;
+    }
+
+    .form-column {
+        flex: 1;
+        padding: 40px;
+        min-width: 300px;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    h2 {
+        margin: 20px 0 15px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-bottom: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    li i {
+        margin-right: 10px;
+        margin-top: 4px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .submit-btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+        background: #2980b9;
+    }
+
+    .required:after {
+        content: ' *';
+        color: #e74c3c;
+    }
+
+    .disclaimer {
+        font-size: 12px;
+        margin-top: 20px;
+        color: #777;
+    }
+
+    @media (max-width: 768px) {
+        .info-column,
+        .form-column {
+            flex: 100%;
+        }
+    }
+
+    .info-icon {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .info-icon i {
+        font-size: 40px;
+        margin-right: 15px;
+    }
+
+    /* Estilos para mensajes de éxito/error */
+    .alert {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .alert.show {
+        display: block;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+    }
+
+    .alert-error {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+    }
+
+    .submit-btn:disabled {
+        background: #95a5a6;
+        cursor: not-allowed;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('pqrsForm') as HTMLFormElement;
+        const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
+
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Deshabilitar el botón mientras se envía
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            // Recoger los datos del formulario
+            const formData = {
+                tipoSolicitud: (document.getElementById('tipoSolicitud') as HTMLSelectElement).value,
+                nombre: (document.getElementById('nombre') as HTMLInputElement).value,
+                tipoDocumento: (document.getElementById('tipoDocumento') as HTMLSelectElement).value,
+                numeroDocumento: (document.getElementById('numeroDocumento') as HTMLInputElement).value,
+                email: (document.getElementById('email') as HTMLInputElement).value,
+                telefono: (document.getElementById('telefono') as HTMLInputElement).value,
+                asunto: (document.getElementById('asunto') as HTMLInputElement).value,
+                mensaje: (document.getElementById('mensaje') as HTMLTextAreaElement).value,
+            };
+
+            try {
+                // Enviar a la API
+                const response = await fetch('/api/send-pqrs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                // Crear mensaje de alerta
+                let alertDiv = document.querySelector('.alert') as HTMLDivElement;
+                if (!alertDiv) {
+                    alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert';
+                    form.insertBefore(alertDiv, form.firstChild);
+                }
+
+                if (response.ok && result.success) {
+                    // Éxito
+                    alertDiv.className = 'alert alert-success show';
+                    alertDiv.innerHTML = `
+                        <strong>¡Éxito!</strong> ${result.message}
+                    `;
+                    
+                    // Limpiar el formulario
+                    form.reset();
+
+                    // Scroll al mensaje
+                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    // Error
+                    alertDiv.className = 'alert alert-error show';
+                    alertDiv.innerHTML = `
+                        <strong>Error:</strong> ${result.message || 'Hubo un problema al enviar su solicitud. Por favor, intente nuevamente.'}
+                    `;
+                    
+                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                // Ocultar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                }, 5000);
+
+            } catch (error) {
+                // Error de red o del servidor
+                let alertDiv = document.querySelector('.alert') as HTMLDivElement;
+                if (!alertDiv) {
+                    alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert';
+                    form.insertBefore(alertDiv, form.firstChild);
+                }
+                
+                alertDiv.className = 'alert alert-error show';
+                alertDiv.innerHTML = `
+                    <strong>Error:</strong> No se pudo conectar con el servidor. Por favor, verifique su conexión e intente nuevamente.
+                `;
+                
+                alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                }, 5000);
+            } finally {
+                // Rehabilitar el botón
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar PQRS';
+            }
+        });
+    });
+</script>

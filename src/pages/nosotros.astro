@@ -1,0 +1,403 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroBg from '../assets/hero-bg.jpg';
+---
+
+<Layout
+  title="Nosotros | Vivir IPS"
+  description="Conozca nuestra misión, visión y valores corporativos. Más de 29 años de experiencia en servicios de salud."
+  image="/hero-bg.jpg"
+  preloadImages={['/hero-bg-low.jpg']}
+>
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                <img 
+                    class="bg-image"
+                    src={HeroBg.src}
+                    style="background-image: url(/public/hero-bg-low.jpg);"
+                    fetchpriority="high"
+                    alt="Hero background"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quienes Somos Section -->
+    <section class='nosotros'>
+        <section class='container'>
+            <h2 class='section-title'>Quiénes Somos</h2>
+            <div class='about-us fadeIn'>
+                <div class='about-content'>
+                    <i class='fas fa-hospital-user about-icon'></i>
+                    <p>
+                        Vivir IPS ha encaminado esfuerzos en centrar su atención de nuestros pacientes en su patología, 
+                        en la atención basada en la evidencia, en contar con un equipo técnico y medico con altos 
+                        estándares en su formación, los cuales están en un constante proceso de reinduccuion y actualización. 
+                        Enfatiza sus atenciones en la calidad de vida del paciente buscando llevar a metas clínicas que 
+                        repercutan en su salud.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <section class='nosotros'>
+        <!-- Mission Vision Section -->
+        <section class='container'>
+            <h2 class='section-title'>Nuestra Esencia</h2>
+            <div class='mission-vision'>
+                <div class='mission fadeIn'>
+                    <h3><i class='fas fa-heartbeat'></i> Misión</h3>
+                    <p>
+                        En <strong>Vivir IPS SAS</strong>, brindamos servicios
+                        de salud humanizados, seguros y de alta calidad,
+                        enfocados en el bienestar integral de nuestros usuarios
+                        y sus familias.
+                    </p>
+                    <p>
+                        Nos comprometemos a ofrecer atención con calidez,
+                        respeto y eficiencia, promoviendo un impacto positivo en
+                        su calidad de vida a través de un equipo profesional
+                        altamente capacitado y tecnología innovadora.
+                    </p>
+                </div>
+                <div class='vision fadeIn'>
+                    <h3><i class='fas fa-eye'></i> Visión</h3>
+                    <p>
+                        Ser la IPS líder en la prestación integral de servicios
+                        de salud en Colombia, reconocida por nuestra excelencia,
+                        innovación y enfoque humanizado.
+                    </p>
+                    <p>
+                        Aspiramos a expandir nuestra presencia a nivel nacional,
+                        garantizando atención de calidad, accesible y centrada
+                        en las necesidades de nuestros usuarios y sus familias,
+                        contribuyendo al bienestar de la sociedad.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class='values-section'>
+            <div class='container'>
+                <h2 class='section-title'>Valores Corporativos</h2>
+                <p>
+                    Nos guiamos por valores sólidos que definen nuestra
+                    identidad y compromiso con el bienestar de nuestros
+                    usuarios.
+                </p>
+
+                <div class='values-container'>
+                    <div class='value-card fadeIn'>
+                        <div class='value-icon'>
+                            <i class='fas fa-users'></i>
+                        </div>
+                        <h3 class='value-title'>Trabajo En Equipo</h3>
+                        <p>
+                            Coordinar e integrar esfuerzos entre varias personas
+                            y dependencias que se necesitan entre sí, para
+                            lograr un resultado en una empresa o causa.
+                        </p>
+                    </div>
+
+                    <div class='value-card fadeIn'>
+                        <div class='value-icon'>
+                            <i class='fas fa-clock'></i>
+                        </div>
+                        <h3 class='value-title'>Oportunidad</h3>
+                        <p>
+                            Desarrollar en forma temporánea, bajo los más altos
+                            estándares de calidad, las funciones necesarias para
+                            que la entidad suministre sus bienes y servicios de
+                            acuerdo con los tiempos establecidos por los
+                            procesos y procedimientos, normas y los requisitos
+                            de los diferentes grupos de interacción.
+                        </p>
+                    </div>
+
+                    <div class='value-card fadeIn'>
+                        <div class='value-icon'>
+                            <i class='fas fa-chart-line'></i>
+                        </div>
+                        <h3 class='value-title'>Mejoramiento Continuo</h3>
+                        <p>
+                            Aplicar los procedimientos establecidos y los
+                            instrumentos gerenciales disponibles para plantear y
+                            ejecutar las estrategias que permitan responder
+                            oportunamente a los cambios del entorno, con el fin
+                            de cumplir con los más altos estándares de calidad
+                            basados en excelentes resultados de gestión.
+                        </p>
+                    </div>
+
+                    <div class='value-card fadeIn'>
+                        <div class='value-icon'>
+                            <i class='fas fa-handshake'></i>
+                        </div>
+                        <h3 class='value-title'>Lealtad</h3>
+                        <p>
+                            Asumir con sentido de pertenencia y devoción los
+                            compromisos que se derivan de las funciones y los
+                            propósitos constitucionales asignados a la Entidad.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</Layout>
+
+<style>
+    :root {
+        --primary-color: #19b8e9;
+        --secondary-color: #0e3551;
+        --accent-color: #5aaac7;
+        --light-bg: #f9fcfd;
+        --text-color: #333;
+        --text-light: #666;
+        --max-width: 1200px;
+    }
+
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        height: 100%;
+        width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgb(0, 0, 0, 0.3);
+
+        z-index: 10;
+    }
+
+    .hero .overlay {
+		height: 100%;
+		width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+		z-index: 11;
+	}
+
+    .nosotros {
+        max-width: 1200px;
+        margin: 60px auto 40px auto;
+        padding: 0 20px;
+    }
+
+    /* Mission Vision Section */
+    .mission-vision {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .mission-vision p {
+        font-size: 0.9em;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        text-wrap: pretty;
+    }
+
+    .section-title {
+        position: relative;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        color: var(--secondary-color);
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary-color);
+    }
+
+    .mission,
+    .vision {
+        background-color: var(--light-bg);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+    }
+
+    .mission:hover,
+    .vision:hover {
+        transform: translateY(-5px);
+    }
+
+    .mission h3,
+    .vision h3 {
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .mission h3 i,
+    .vision h3 i {
+        margin-right: 10px;
+        font-size: 1.8rem;
+    }
+
+    /* Values Section */
+    .values-section {
+        margin-bottom: 4rem;
+    }
+
+    .values-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .value-card {
+        background-color: var(--light-bg);
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+    }
+
+    .value-card p {
+        font-size: 0.9em;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        text-wrap: pretty;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .value-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .value-title {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+    }
+
+    /* About Us Section */
+    .about-us {
+        background-color: var(--light-bg);
+        border-radius: 10px;
+        padding: 2.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        margin-bottom: 4rem;
+        transition: transform 0.3s;
+    }
+
+    .about-us:hover {
+        transform: translateY(-5px);
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .about-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+    }
+
+    .about-content p {
+        font-size: 1.1em;
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+        text-wrap: pretty;
+        line-height: 1.6;
+        color: var(--text-color);
+    }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+        .mission-vision {
+            grid-template-columns: 1fr;
+        }
+
+        .facilities-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fadeIn {
+        animation: fadeIn 1s ease-out;
+    }
+</style>

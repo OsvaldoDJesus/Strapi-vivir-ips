@@ -1,0 +1,260 @@
+---
+import SuperSalud from "../assets/logo-vigilado-supersalud.png"
+---
+
+<footer>
+    <div class='footer-content'>
+        <div class='container'>
+            <div class='column'>
+                <h3>Quejas y Reclamos</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:servicioalcliente@vivirips.com">servicioalcliente@vivirips.com</a>
+                    </li>
+                </ul>
+                
+                <h3>Notificaciones judiciales</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:servicioalcliente@vivirips.com">servicioalcliente@vivirips.com</a>
+                    </li>
+                </ul>
+                
+                <h3>Teléfonos</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:6013286372">+57 601-3286372</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-mobile-alt"></i>
+                        <a href="tel:3330334209">+57 333-0334209</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class='column'>
+                <h3>Servicio al cliente</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-calendar-alt"></i>
+                        <a href="/contacto">Solicitud de citas</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-file-alt"></i>
+                        <a href="/cuotas-copagos">Deberes y derechos de los usuarios</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-handshake"></i>
+                        <a href="/contacto">Contáctanos</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-comment"></i>
+                        <a href="/pqrs">PQRS</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class='column'>
+                <h3>Redes sociales</h3>
+                <ul>
+                    <li>
+                        <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/vivirips" target="_blank">Instagram</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-facebook-f"></i>
+                        <a href="https://facebook.com/vivirips" target="_blank">Facebook</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-linkedin-in"></i>
+                        <a href="https://linkedin.com/company/vivirips" target="_blank">LinkedIn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class='supersalud-container'>
+            <div class="supersalud-logo">
+                <span class="vigilado">Vigilado</span>
+                <span class="super">Supersalud</span>
+                <div class="flag-colors"></div>
+            </div>
+            <img
+                src={SuperSalud.src}
+                alt="Vigilado Supersalud"
+                class="supersalud-img"
+            />
+        </div>
+    </div>
+    
+    <div class='divider'></div>
+    
+    <div class='copyright'>
+        <p>© 2025 © Vivir IPS. Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background-color: #0e3551;
+        padding: 40px 20px 20px;
+        color: white;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .column {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .column h3 {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    .column ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 0 30px 0;
+    }
+
+    .column ul .bolded {
+        font-weight: 700;
+    }
+
+    .column ul li {
+        margin-bottom: 10px;
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+    }
+
+    .column ul li i {
+        margin-right: 10px;
+        width: 16px;
+        text-align: center;
+    }
+
+    .column ul li a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.9);
+        transition: color 0.3s ease;
+    }
+
+    .column ul li a:hover {
+        color: #19b8e9;
+    }
+
+    .supersalud-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .supersalud-img {
+        height: 90px;
+    }
+
+    .supersalud-logo {
+        display: none;
+    }
+
+    .divider {
+        height: 1px;
+        width: 100%;
+        max-width: 900px;
+        margin: 20px auto;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .copyright {
+        text-align: center;
+        padding: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+    }
+
+    /* BREAKPOINT ACTUALIZADO: 1050px */
+    @media screen and (max-width: 1050px) {
+        footer {
+            padding: 30px 20px 20px;
+        }
+        
+        .container {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .column {
+            min-width: 100%;
+        }
+        
+        .column h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .column ul {
+            margin-bottom: 15px;
+        }
+    }
+
+    /* BREAKPOINT PARA MÓVILES: 730px */
+    @media screen and (max-width: 730px) {
+        footer {
+            padding: 25px 15px 15px;
+        }
+        
+        .column h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .column ul li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .supersalud-img {
+            height: 70px;
+        }
+        
+        .copyright {
+            padding: 15px 10px;
+            font-size: 0.8rem;
+        }
+    }
+    
+    /* BREAKPOINT ESPECÍFICO PARA iPhone SE */
+    @media screen and (max-width: 380px) {
+        .column ul li {
+            font-size: 0.85rem;
+        }
+        
+        .column ul li i {
+            margin-right: 8px;
+        }
+        
+        .supersalud-img {
+            height: 60px;
+        }
+    }
+</style>

@@ -1,0 +1,684 @@
+---
+import Layout from '../layouts/Layout.astro';
+import hero03 from '../assets/hero03.jpg';
+---
+
+<Layout
+  title="Contacto | Vivir IPS"
+  description="Comuníquese con nosotros. Encuentre nuestras sedes y canales de atención en toda Colombia."
+  image="/hero03.jpg"
+  preloadImages={['/hero03-low.jpg']}
+>
+    
+    <section class='hero'>
+        <div class='container'>
+            <div class='bg'>
+                <img
+                    src={hero03.src}
+                    style="background-image: url(/public/hero03-low.jpg);"
+                    alt="Hero background"
+                    fetchpriority="high"
+                    class="bg-image"
+                />
+                <div class='black-overlay'>
+                    <div class='overlay'></div>
+                </div>
+            </img>
+        </div>
+    </section>
+    <section class='contacto standard-section'>
+        <div class='container'>
+            <header>
+                <h1 class="section-title">Contáctenos</h1>
+                <p>
+                    Estamos aquí para ayudarle. Utilice cualquiera de nuestros
+                    canales de atención o complete el formulario y nos pondremos
+                    en contacto con usted a la brevedad.
+                </p>
+            </header>
+
+            <div class='contact-container'>
+                <div class='contact-form'>
+                    <h2>Formulario de Contacto</h2>
+                    <form id='contactForm'>
+                        <div class='form-group'>
+                            <label for='nombre' class='required'
+                                >Nombre completo</label
+                            >
+                            <input
+                                type='text'
+                                id='nombre'
+                                name='nombre'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='email' class='required'
+                                >Correo electrónico</label
+                            >
+                            <input
+                                type='email'
+                                id='email'
+                                name='email'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='telefono'>Teléfono</label>
+                            <input type='tel' id='telefono' name='telefono' />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='asunto' class='required'>Asunto</label>
+                            <input
+                                type='text'
+                                id='asunto'
+                                name='asunto'
+                                required
+                            />
+                        </div>
+
+                        <div class='form-group'>
+                            <label for='mensaje' class='required'>Mensaje</label
+                            >
+                            <textarea id='mensaje' name='mensaje' required
+                            ></textarea>
+                        </div>
+
+                        <button type='submit' class='submit-btn'
+                            >Enviar mensaje</button
+                        >
+                    </form>
+                </div>
+
+                <div class='contact-info'>
+                    <h2>Canales de Atención</h2>
+
+                    <div class='contact-methods'>
+                        <div class='contact-method'>
+                            <i class='fas fa-headset'></i>
+                            <div class='method-info'>
+                                <h3>Centro de Atención Telefónica</h3>
+                                <p>6013286372 <b>EXT: 2412</b></p>
+                                <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                                <p>Sábados: 8:00 AM - 12:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class='contact-method'>
+                            <i class='fas fa-envelope'></i>
+                            <div class='method-info'>
+                                <h3>Correo Electrónico</h3>
+                                <p>servicioalcliente@vivirips.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>WhatsApp por Sedes</h2>
+                    <p>
+                        Comuníquese directamente con cualquiera de nuestras
+                        sedes a través de WhatsApp:
+                    </p>
+
+                    <table class='whatsapp-table'>
+                        <thead>
+                            <tr>
+                                <th>Sede</th>
+                                <th>Número WhatsApp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <tr>
+                                <td>Bogotá D.C. Castellana</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573103972849'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 310 397 2849
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bogotá D.C. Country sur Famisanar</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573138056595'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 313 805 6595
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bogotá D.C. Country Sur Capital salud y Fomag</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573502949687'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 350 294 9687
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Barranquilla</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573103505383'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 310 350 5383
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tunja</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573242121716'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 324 212 1716
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Manizales</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573017912716'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 301 791 2716
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Yopal</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573005348563'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 300 534 8563
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Soacha</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573017912631'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 301 791 2631
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Neiva</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573007644134'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 300 764 4134
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Villavicencio</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573052781533'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 305 278 1533
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cúcuta</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573011268147'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 301 126 8147
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bucaramanga</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573242121701'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 324 212 1701
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ibagué</td>
+                                <td>
+                                    <a
+                                        href='https://wa.me/573242121703'
+                                        class='whatsapp-link'
+                                        target='_blank'
+                                    >
+                                        <i class='fab fa-whatsapp'></i> 324 212 1703
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .hero {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .hero .bg {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    .hero .black-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 2;
+    }
+
+    .hero .overlay {
+		height: 100%;
+		width: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(25, 184, 233, 0.25) 0%,
+            rgba(25, 184, 233, 0.15) 3%,
+            rgba(255, 255, 255, 0) 15%
+        );
+
+		z-index: 11;
+	}
+
+    /* Los estilos de .contacto ahora usan .standard-section del Layout global */
+
+    header {
+        text-align: left;
+        margin-bottom: var(--content-gap);
+    }
+
+    header h1 {
+        /* Los tamaños vienen del Layout global estandarizado */
+        color: var(--secondary-color);
+        margin-bottom: var(--title-margin-bottom);
+    }
+.section-title {
+		position: relative;
+		font-size: var(--h1-size-mobile);
+		margin-bottom: var(--title-margin-bottom);
+		color: var(--secondary-color);
+	}
+
+	.section-title::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 80px;
+	    height: 4px;
+		background-color: var(--primary-color);
+	}
+
+	header p {
+		/* Los tamaños vienen del Layout global estandarizado */
+		color: #7f8c8d;
+		max-width: 800px;
+		margin: 0;
+		margin-top: 0.5rem;
+	}
+
+    .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .contact-form {
+        flex: 1;
+        min-width: 300px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info {
+        flex: 1;
+        min-width: 300px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #3498db;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #34495e;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .submit-btn {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 14px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+        background: #2980b9;
+    }
+
+    .required:after {
+        content: ' *';
+        color: #e74c3c;
+    }
+
+    .whatsapp-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .whatsapp-table th,
+    .whatsapp-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .whatsapp-table th {
+        background-color: #f2f2f2;
+        font-weight: 600;
+    }
+
+    .whatsapp-table tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .whatsapp-link {
+        color: #25d366;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .whatsapp-link i {
+        margin-right: 8px;
+        font-size: 20px;
+    }
+
+    .whatsapp-link:hover {
+        text-decoration: underline;
+    }
+
+    .contact-methods {
+        margin-top: 30px;
+    }
+
+    .contact-method {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .contact-method i {
+        width: 40px;
+        height: 40px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 18px;
+    }
+
+    .method-info h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: #2c3e50;
+    }
+
+    .method-info p {
+        margin: 0;
+        color: #7f8c8d;
+    }
+
+    /* Estilos para mensajes de éxito/error */
+    .alert {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .alert.show {
+        display: block;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+    }
+
+    .alert-error {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+    }
+
+    .submit-btn:disabled {
+        background: #95a5a6;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .contact-container {
+            flex-direction: column;
+        }
+
+        .whatsapp-table {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('contactForm') as HTMLFormElement;
+        const submitBtn = form?.querySelector('.submit-btn') as HTMLButtonElement;
+
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Deshabilitar el botón mientras se envía
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+
+            // Recoger los datos del formulario
+            const formData = {
+                nombre: (document.getElementById('nombre') as HTMLInputElement).value,
+                email: (document.getElementById('email') as HTMLInputElement).value,
+                telefono: (document.getElementById('telefono') as HTMLInputElement).value,
+                asunto: (document.getElementById('asunto') as HTMLInputElement).value,
+                mensaje: (document.getElementById('mensaje') as HTMLTextAreaElement).value,
+            };
+
+            try {
+                // Enviar a la API
+                const response = await fetch('/api/send-contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+
+                const result = await response.json();
+
+                // Crear mensaje de alerta
+                let alertDiv = document.querySelector('.alert') as HTMLDivElement;
+                if (!alertDiv) {
+                    alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert';
+                    form.insertBefore(alertDiv, form.firstChild);
+                }
+
+                if (response.ok && result.success) {
+                    // Éxito
+                    alertDiv.className = 'alert alert-success show';
+                    alertDiv.innerHTML = `
+                        <strong>¡Éxito!</strong> ${result.message}
+                    `;
+                    
+                    // Limpiar el formulario
+                    form.reset();
+
+                    // Scroll al mensaje
+                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    // Error
+                    alertDiv.className = 'alert alert-error show';
+                    alertDiv.innerHTML = `
+                        <strong>Error:</strong> ${result.message || 'Hubo un problema al enviar su mensaje. Por favor, intente nuevamente.'}
+                    `;
+                    
+                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                // Ocultar el mensaje después de 5 segundos
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                }, 5000);
+
+            } catch (error) {
+                // Error de red o del servidor
+                let alertDiv = document.querySelector('.alert') as HTMLDivElement;
+                if (!alertDiv) {
+                    alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert';
+                    form.insertBefore(alertDiv, form.firstChild);
+                }
+                
+                alertDiv.className = 'alert alert-error show';
+                alertDiv.innerHTML = `
+                    <strong>Error:</strong> No se pudo conectar con el servidor. Por favor, verifique su conexión e intente nuevamente.
+                `;
+                
+                alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                }, 5000);
+            } finally {
+                // Rehabilitar el botón
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar mensaje';
+            }
+        });
+    });
+</script>

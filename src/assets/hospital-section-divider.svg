@@ -1,0 +1,32 @@
+<svg viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="dividerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e6f3f7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f4f9fa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main divider line -->
+  <rect x="0" y="38" width="800" height="4" rx="2" fill="#5aaac7" />
+  
+  <!-- Center medical cross symbol -->
+  <rect x="385" y="25" width="30" height="30" rx="2" fill="#5aaac7" />
+  <rect x="395" y="15" width="10" height="50" rx="2" fill="#5aaac7" />
+  
+  <!-- Subtle pulse line on left -->
+  <path d="M 50,40 L 100,40 L 125,20 L 150,60 L 175,30 L 200,40 L 250,40" 
+        fill="none" stroke="#89c4d9" stroke-width="2" />
+  
+  <!-- Subtle pulse line on right -->
+  <path d="M 550,40 L 600,40 L 625,20 L 650,60 L 675,30 L 700,40 L 750,40" 
+        fill="none" stroke="#89c4d9" stroke-width="2" />
+  
+  <!-- Small circles as decorative elements -->
+  <circle cx="300" cy="40" r="4" fill="#89c4d9" />
+  <circle cx="330" cy="40" r="4" fill="#89c4d9" />
+  <circle cx="360" cy="40" r="4" fill="#89c4d9" />
+  <circle cx="440" cy="40" r="4" fill="#89c4d9" />
+  <circle cx="470" cy="40" r="4" fill="#89c4d9" />
+  <circle cx="500" cy="40" r="4" fill="#89c4d9" />
+</svg>
