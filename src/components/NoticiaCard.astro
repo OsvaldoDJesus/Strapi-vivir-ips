@@ -1,0 +1,142 @@
+---
+interface Props {
+  titulo: string
+  slug: string
+  descripcion: string
+  imagen: string
+  link: string | null
+  tipo: 'noticia' | 'campana' | 'evento' | 'alerta'
+  fechaInicio: string
+  fechaFin: string | null
+  prioridad: number
+  verMasBoton: string
+  buttonColor: 'primario' | 'secundario' | 'exitoso' | 'advertencia'
+  priority?: boolean
+}
+
+const { 
+  titulo, 
+  slug, 
+  descripcion, 
+  imagen, 
+  link,
+  tipo, 
+  fechaInicio, 
+  fechaFin,
+  prioridad,
+  verMasBoton,
+  buttonColor,
+  priority = false
+} = Astro.props
+
+// Determinar el href (link externo o interno)
+const href = link || `/noticias/${slug}`
+
+// Clase del botón según colorrr
+const buttonClasses = {
+  primario: 'bg-[#19b8e9] hover:bg-[#0e3551]',
+  secundario: 'bg-[#0e3551] hover:bg-[#19b8e9]',
+  exitoso: 'bg-green-600 hover:bg-green-700',
+  advertencia: 'bg-yellow-500 hover:bg-yellow-600'
+}
+
+// Badge del tipo de noticia
+const tipoBadge = {
+  noticia: { text: 'Noticia', color: 'bg-blue-500' },
+  campana: { text: 'Campaña', color: 'bg-purple-500' },
+  evento: { text: 'Evento', color: 'bg-green-500' },
+  alerta: { text: 'Alerta', color: 'bg-red-500' }
+}
+
+// Formatear fecha
+const formatearFecha = (fecha: string) => {
+  return new Date(fecha).toLocaleDateString('es-ES', { 
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  })
+}
+---
+
+<article class="noticia-card group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+  {/* Badge de prioridad alta */}
+  {prioridad === 1 && (
+    <div class="absolute top-3 left-3 z-20 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Importante
+    </div>
+  )}
+
+  {/* Imagen */}
+  <div class="relative w-full h-48 overflow-hidden bg-gray-100">
+    <img 
+      src={imagen} 
+      alt={titulo}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
+      decoding="async"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+    
+    {/* Badge de tipo */}
+    <span class={`absolute top-3 right-3 ${tipoBadge[tipo].color} text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md`}>
+      {tipoBadge[tipo].text}
+    </span>
+
+    {/* Overlay oscuro al hover */}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </div>
+
+  {/* Contenido */}
+  <div class="p-5">
+    {/* Fecha */}
+    <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <time datetime={fechaInicio}>
+        {formatearFecha(fechaInicio)}
+        {fechaFin && ` - ${formatearFecha(fechaFin)}`}
+      </time>
+    </div>
+
+    {/* Título */}
+    <h3 class="text-lg font-bold text-[#0e3551] mb-2.5 line-clamp-2 leading-tight group-hover:text-[#19b8e9] transition-colors">
+      {titulo}
+    </h3>
+
+    {/* Descripción */}
+    <p class="text-sm text-gray-600 mb-4 line-clamp-3 leading-relaxed">
+      {descripcion}
+    </p>
+
+    {/* Botón CTA */}
+    <a 
+      href={href}
+      target={link ? "_blank" : "_self"}
+      rel={link ? "noopener noreferrer" : undefined}
+      class={`inline-flex items-center gap-2 px-5 py-2.5 ${buttonClasses[buttonColor]} text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm`}
+    >
+      {verMasBoton}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</article>
+
+<style>
+  .noticia-card {
+    will-change: transform, box-shadow;
+  }
+
+  /* Optimización GPU */
+  .noticia-card:hover {
+    transform: translateY(-8px);
+  }
+</style>

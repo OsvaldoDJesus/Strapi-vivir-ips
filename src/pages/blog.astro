@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro'
+import BlogCard from '../components/BlogCard.astro'
+import { fetchBlogs, fetchCategorias, getStrapiOptimizedImage } from '../lib/strapi'
+import type { Blog, Categoria } from '../types/strapi'
+import hero03 from '../assets/hero03.jpg'
+
+// Obtener parámetro de página de la URL
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1
+const blogsPerPage = 6
+
+// Paginación del lado del servidor (Strapi) - MUY RÁPIDO
+const [blogsData, categoriasData] = await Promise.all([
+  fetchBlogs({ page: currentPage, pageSize: blogsPerPage }), // Solo trae 6 blogs
+  fetchCategorias()
+])
+
+const { data: blogs, meta } = blogsData
+const { data: categorias } = categoriasData
+
+// Usar metadata de Strapi para paginación
+const totalPages = meta.pagination.pageCount
+const totalBlogs = meta.pagination.total
+---
+
+<Layout 
+  title="Aprende con Nosotros | Vivir IPS"
+  description="Blog de salud, bienestar y prevención. Artículos escritos por profesionales de la salud."
+  image="/hero03.jpg"
+  preloadImages={['/hero03-low.jpg']}
+>
+  <!-- Hero Section con imagen de fondo - lazy loading -->
+  <section class='hero'>
+    <div class='container'>
+      <div class='bg'>
+        <img 
+          class="bg-image"
+          src={hero03.src}
+          style="background-image: url(/hero03-low.jpg);"
+          loading="lazy"
+          decoding="async"
+          alt="Hero background"
+        />
+        <div class='black-overlay'>
+          <div class='overlay'></div>
+        </div>
+      </img>
+    </div>
+  </section>
+
+  <!-- Título y descripción arriba de categorías -->
+  <section class="py-12 sm:py-16 md:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-8 sm:mb-10 md:mb-12">
+        <h1 class='section-title'>Aprende con Nosotros</h1>
+        <p class="text-gray-600 text-sm sm:text-base lg:text-lg max-w-3xl mt-2">
+          Artículos sobre salud, bienestar y prevención creados por nuestros expertos
+        </p>
+        {totalBlogs > 0 && (
+          <p class="text-sm text-gray-500 mt-3">
+            Mostrando <span class="font-semibold text-[#19b8e9]">{blogs.length}</span> de <span class="font-semibold">{totalBlogs}</span> artículos
+          </p>
+        )}
+      </header>
+    
+      <div class="max-w-6xl mx-auto">
+      <!-- Categorías Filter -->
+      {categorias.length > 0 && (
+        <div class="mb-8 sm:mb-10 md:mb-12">
+          <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
+            <button class="categoria-btn px-4 sm:px-5 py-2 sm:py-2.5 border-2 border-gray-300 bg-white rounded-full font-medium text-xs sm:text-sm transition-all hover:border-[#19b8e9] hover:text-[#19b8e9] active" data-categoria="todas">
+              Todas las categorías
+            </button>
+            {(categorias as Categoria[]).map((cat) => (
+              <button 
+                class="categoria-btn px-4 sm:px-5 py-2 sm:py-2.5 border-2 border-gray-300 bg-white rounded-full font-medium text-xs sm:text-sm transition-all hover:border-[#19b8e9] hover:text-[#19b8e9]" 
+                data-categoria={cat.slugCategoria}
+                data-color={cat.color}
+              >
+                {cat.NombreCategoria}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Blogs Grid -->
+      {blogs.length === 0 ? (
+        <div class="text-center py-12 sm:py-16 md:py-20">
+          <div class="text-5xl sm:text-6xl mb-4 opacity-50">📚</div>
+          <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-3">Próximamente</h3>
+          <p class="text-sm sm:text-base text-gray-600">Estamos preparando contenido interesante para ti.</p>
+        </div>
+      ) : (
+        <div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+            {(blogs as Blog[]).map((blogPost, index) => {
+              const { tituloBlog, slugBlogs, descripcionBlog, imgPortadaBlog, FechaDePublicacion, TiempoEstimado, blogDestacado, blog, autor } = blogPost
+              
+              // Imagen del blog - usar formato 'medium' para cards (más liviano)
+              const imageUrl = getStrapiOptimizedImage(imgPortadaBlog, 'medium')
+              
+              // Autor - usar formato 'thumbnail' para avatares (más liviano)
+              let autorNombre = 'Vivir IPS'
+              let autorAvatar = null
+              if (autor && (autor as any).nombreAutor) {
+                autorNombre = (autor as any).nombreAutor
+                if ((autor as any).avatar) {
+                  autorAvatar = getStrapiOptimizedImage((autor as any).avatar, 'thumbnail')
+                }
+              }
+              
+              // Categoría
+              let categoria: { name: string; color: string; slug: string } | undefined = undefined
+              if (blog && (blog as any)[0]) {
+                categoria = {
+                  name: (blog as any)[0].NombreCategoria,
+                  color: (blog as any)[0].color,
+                  slug: (blog as any)[0].slugCategoria
+                }
+              }
+              
+              // Fecha
+              const fecha = new Date(FechaDePublicacion).toLocaleDateString('es-ES', { 
+                month: 'short', 
+                day: 'numeric',
+                year: 'numeric'
+              })
+              
+              return (
+                <BlogCard
+                  title={tituloBlog}
+                  slug={slugBlogs}
+                  description={descripcionBlog}
+                  imageUrl={imageUrl}
+                  date={fecha}
+                  readTime={TiempoEstimado}
+                  category={categoria}
+                  author={{
+                    name: autorNombre,
+                    avatar: autorAvatar
+                  }}
+                  featured={blogDestacado}
+                  priority={index < 3}
+                />
+              )
+            })}
+          </div>
+
+          <!-- Paginación -->
+          {totalPages > 1 && (
+            <nav class="flex justify-center items-center gap-2 mt-10 sm:mt-12" aria-label="Paginación del blog">
+              <!-- Botón Anterior -->
+              {currentPage > 1 ? (
+                <a 
+                  href={`/blog?page=${currentPage - 1}`}
+                  class="pagination-btn pagination-arrow"
+                  aria-label="Página anterior"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </a>
+              ) : (
+                <span class="pagination-btn pagination-arrow pagination-disabled">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </span>
+              )}
+
+              <!-- Números de página -->
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNum => (
+                pageNum === 1 || 
+                pageNum === totalPages || 
+                (pageNum >= currentPage - 1 && pageNum <= currentPage + 1) ? (
+                  <a
+                    href={`/blog?page=${pageNum}`}
+                    class={`pagination-btn pagination-number ${pageNum === currentPage ? 'pagination-active' : ''}`}
+                    aria-label={`Página ${pageNum}`}
+                    aria-current={pageNum === currentPage ? 'page' : undefined}
+                  >
+                    {pageNum}
+                  </a>
+                ) : (pageNum === currentPage - 2 || pageNum === currentPage + 2) ? (
+                  <span class="pagination-ellipsis">...</span>
+                ) : null
+              ))}
+
+              <!-- Botón Siguiente -->
+              {currentPage < totalPages ? (
+                <a 
+                  href={`/blog?page=${currentPage + 1}`}
+                  class="pagination-btn pagination-arrow"
+                  aria-label="Página siguiente"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              ) : (
+                <span class="pagination-btn pagination-arrow pagination-disabled">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              )}
+            </nav>
+          )}
+        </div>
+      )}
+    </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero Section - mismo patrón que otras páginas */
+  .hero {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero .container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .hero .bg {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  .hero .black-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  .hero .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(25, 184, 233, 0.25) 0%,
+      rgba(25, 184, 233, 0.15) 3%,
+      rgba(255, 255, 255, 0) 15%
+    );
+    z-index: 11;
+  }
+
+  /* Section Title */
+  .section-title {
+    position: relative;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-family: var(--secondary-font);
+    font-weight: var(--bold-weight);
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 80px;
+    height: 4px;
+    background-color: #0A9DDA;
+  }
+
+  /* Category Button States */
+  .categoria-btn.active {
+    background: #19b8e9 !important;
+    border-color: #19b8e9 !important;
+    color: white !important;
+  }
+
+  /* Paginación */
+  .pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .pagination-btn:hover:not(.pagination-disabled):not(.pagination-active) {
+    border-color: #19b8e9;
+    color: #19b8e9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .pagination-number.pagination-active {
+    background: linear-gradient(135deg, #19b8e9 0%, #0e3551 100%);
+    border-color: #19b8e9;
+    color: white;
+  }
+
+  .pagination-arrow {
+    min-width: 2.5rem;
+  }
+
+  .pagination-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  /* Responsive Paginación */
+  @media (max-width: 640px) {
+    .pagination-btn {
+      min-width: 2.25rem;
+      height: 2.25rem;
+      font-size: 0.8125rem;
+    }
+  }
+
+  /* Responsive Hero */
+  @media (max-width: 768px) {
+    .hero {
+      height: 150px;
+    }
+  }
+
+  /* Optimización GPU para filtros - animación súper smooth */
+  .blog-card-wrapper {
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .blog-card-wrapper.hidden {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .blog-card-wrapper.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+    position: relative;
+    visibility: visible;
+  }
+</style>
+
+<script is:inline>
+  // Filtro de categorías - defer para mejorar FCP
+  window.addEventListener('load', () => {
+    requestIdleCallback(() => {
+      const categoriaButtons = document.querySelectorAll('.categoria-btn');
+      const blogCards = document.querySelectorAll('.blog-card-wrapper');
+
+      // Marcar todas como visibles inicialmente
+      blogCards.forEach(card => card.classList.add('visible'));
+
+      categoriaButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const categoria = button.dataset.categoria;
+          
+          // Update active button
+          categoriaButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          // Filter blogs con animación GPU-accelerated
+          blogCards.forEach(card => {
+            const shouldShow = categoria === 'todas' || card.dataset.categoria === categoria;
+            
+            if (shouldShow) {
+              card.classList.remove('hidden');
+              card.classList.add('visible');
+            } else {
+              card.classList.remove('visible');
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  });
+</script>

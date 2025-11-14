@@ -35,7 +35,12 @@ import HeaderNavigation from "./HeaderNavigation";
                     <img 
                         src={Logo.src} 
                         alt="Logo Vivir IPS" 
-                        class="h-[75px] transition-all duration-300 min-[1080px]:h-20 max-[1079px]:h-[85px]"
+                        class="logo-img transition-all duration-300"
+                        width="207"
+                        height="106"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
                     />
                 </a>
             </div>
@@ -46,7 +51,9 @@ import HeaderNavigation from "./HeaderNavigation";
 </header>
 
 <script>
-    let scrollHandler: (() => void) | null = null;
+    // @ts-nocheck
+    let scrollHandler = null;
+    let ticking = false;
 
     function initScrollHandler() {
         const navbar = document.getElementById('navbar');
@@ -55,36 +62,46 @@ import HeaderNavigation from "./HeaderNavigation";
         
         if (!navbar || !floatingBg || !fullBg) return;
 
+        // Optimizado con requestAnimationFrame para evitar reflows
         scrollHandler = () => {
-            const scrollY = window.scrollY;
-            const isScrolled = scrollY > 200;
-            const isDesktop = window.innerWidth >= 1080;
-            
-            // Only apply scroll animation on desktop
-            if (isDesktop) {
-                if (isScrolled) {
-                    // Fade out floating background, fade in full-width background
-                    floatingBg.style.opacity = '0';
-                    fullBg.style.opacity = '1';
-                    // Move navbar to top
-                    navbar.style.top = '0';
-                } else {
-                    // Fade in floating background, fade out full-width background
-                    floatingBg.style.opacity = '1';
-                    fullBg.style.opacity = '0';
-                    // Restore offset
-                    navbar.style.top = '2.5rem'; // 40px / top-10
-                }
-            } else {
-                // Reset styles for mobile - let CSS handle it
-                floatingBg.style.opacity = '';
-                fullBg.style.opacity = '';
-                navbar.style.top = '';
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const isScrolled = scrollY > 200;
+                    const isDesktop = window.innerWidth >= 1080;
+                    
+                    // Only apply scroll animation on desktop
+                    if (isDesktop) {
+                        if (isScrolled) {
+                            // Fade out floating background, fade in full-width background
+                            floatingBg.style.opacity = '0';
+                            fullBg.style.opacity = '1';
+                            // Move navbar to top
+                            navbar.style.top = '0';
+                        } else {
+                            // Fade in floating background, fade out full-width background
+                            floatingBg.style.opacity = '1';
+                            fullBg.style.opacity = '0';
+                            // Restore offset
+                            navbar.style.top = '2.5rem'; // 40px / top-10
+                        }
+                    } else {
+                        // Reset styles for mobile - let CSS handle it
+                        floatingBg.style.opacity = '';
+                        fullBg.style.opacity = '';
+                        navbar.style.top = '';
+                    }
+                    
+                    ticking = false;
+                });
+                
+                ticking = true;
             }
         };
 
-        window.addEventListener('scroll', scrollHandler);
-        window.addEventListener('resize', scrollHandler);
+        // Passive listeners para mejor performance
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        window.addEventListener('resize', scrollHandler, { passive: true });
         scrollHandler(); // Initial check
     }
 
@@ -107,6 +124,25 @@ import HeaderNavigation from "./HeaderNavigation";
 </script>
 
 <style>
+    /* Logo con aspect ratio correcto */
+    .logo-img {
+        height: 75px;
+        width: auto; /* Mantiene aspect ratio */
+        aspect-ratio: 207 / 106;
+    }
+
+    @media (min-width: 1080px) {
+        .logo-img {
+            height: 80px; /* 20 * 4px = 80px */
+        }
+    }
+
+    @media (max-width: 1079px) {
+        .logo-img {
+            height: 85px;
+        }
+    }
+
     /* Estilos globales para navegación - necesarios para los componentes React */
     :global(.nav-menu) {
         display: flex;
@@ -160,7 +196,7 @@ import HeaderNavigation from "./HeaderNavigation";
         cursor: pointer;
     }
 
-    :global(.dropdown-toggle span) {
+     :global(.dropdown-toggle span) {
         font-weight: 500 !important;
     }
 

@@ -1,0 +1,310 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { fetchNoticiaBySlug, fetchNoticias } from '../../lib/strapi'
+import type { Noticia } from '../../types/strapi'
+
+export async function getStaticPaths() {
+  const { data: noticias } = await fetchNoticias({ active: true }) as { data: Noticia[] }
+  
+  return noticias.map((noticia) => ({
+    params: { slug: noticia.slugNoticia },
+    props: { noticia }
+  }))
+}
+
+const { slug } = Astro.params
+const { noticia } = Astro.props as { noticia: Noticia }
+
+if (!noticia) {
+  return Astro.redirect('/404')
+}
+
+const imageUrl = noticia.multimediaNoticia?.url || '/placeholder.jpg'
+
+const tipoLabels = {
+  noticia: 'Noticia',
+  campana: 'Campaña',
+  evento: 'Evento',
+  alerta: 'Alerta'
+}
+
+const tipoColors = {
+  noticia: '#3b82f6',
+  campana: '#10b981',
+  evento: '#f59e0b',
+  alerta: '#ef4444'
+}
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('es-CO', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+---
+
+<Layout
+  title={`${noticia.tituloNoticia} | Vivir IPS`}
+  description={noticia.descripcionNoticia}
+  image={imageUrl}
+>
+  <article class="noticia-page">
+    <div class="noticia-hero">
+      <img 
+        src={imageUrl} 
+        alt={noticia.tituloNoticia}
+        class="hero-image"
+        decoding="async"
+      />
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <span 
+            class="tipo-badge"
+            style={`background-color: ${tipoColors[noticia.tipoDeContenidoNoticia]}`}
+          >
+            {tipoLabels[noticia.tipoDeContenidoNoticia]}
+          </span>
+          <h1>{noticia.tituloNoticia}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="noticia-container">
+      <div class="noticia-meta">
+        <div class="meta-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>Publicado: {formatDate(noticia.fechaDeInicioNoticia)}</span>
+        </div>
+        {noticia.fechaDeFinNoticia && (
+          <div class="meta-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Vigente hasta: {formatDate(noticia.fechaDeFinNoticia)}</span>
+          </div>
+        )}
+      </div>
+
+      <div class="noticia-content">
+        <p class="lead">{noticia.descripcionNoticia}</p>
+        
+        {noticia.link && (
+          <div class="cta-section">
+            <a 
+              href={noticia.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-button"
+            >
+              {noticia.verMasBoton}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        )}
+      </div>
+
+      <div class="back-link">
+        <a href="/#noticias">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Volver a noticias
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .noticia-page {
+    min-height: 100vh;
+  }
+
+  .noticia-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 600px;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: white;
+  }
+
+  .tipo-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .noticia-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .noticia-meta {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #e5e7eb;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #6b7280;
+    font-size: 0.95rem;
+  }
+
+  .meta-item svg {
+    color: var(--primary-color);
+  }
+
+  .noticia-content {
+    line-height: 1.8;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: #374151;
+    margin-bottom: 30px;
+    line-height: 1.8;
+  }
+
+  .cta-section {
+    margin-top: 50px;
+    padding: 40px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: var(--secondary-color);
+    transform: translateX(5px);
+  }
+
+  .back-link {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px solid #e5e7eb;
+  }
+
+  .back-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .back-link a:hover {
+    color: var(--secondary-color);
+    transform: translateX(-5px);
+  }
+
+  @media (max-width: 768px) {
+    .noticia-hero {
+      height: 50vh;
+      min-height: 300px;
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+
+    .noticia-container {
+      padding: 40px 20px;
+    }
+
+    .noticia-meta {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+    }
+
+    .cta-section {
+      padding: 30px 20px;
+    }
+
+    .cta-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

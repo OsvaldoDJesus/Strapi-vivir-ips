@@ -1,6 +1,7 @@
 ---
 import LogoCarousel from '../components/LogoCarousel.astro';
 import Programas from '../components/Programas.astro';
+import Noticias from '../components/Noticias.astro';
 import Layout from '../layouts/Layout.astro';
 import heroBg from '../assets/hero-bg.jpg';
 import hero03 from '../assets/hero03.jpg';
@@ -99,6 +100,9 @@ import hero03 from '../assets/hero03.jpg';
 			</div>
         </div>
     </section>
+
+	<!-- Componente de Noticias (ya incluye fetch y todo el diseño) -->
+	<Noticias />
 
 	<section class='aliados'>
 		<h2>Nuestros Aliados</h2>
@@ -286,8 +290,6 @@ import hero03 from '../assets/hero03.jpg';
         hyphens: auto;
         text-wrap: pretty;
 	}
-
-
 
     /* Responsive design - Ajuste SOLO para pantallas menores a 1080px */
     @media screen and (max-width: 1079px) {

@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "vivir-ips",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.0",
     "@astrojs/react": "^4.4.1",
     "@astrojs/tailwind": "^6.0.2",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -20,12 +19,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
-    "lucide-react": "^0.548.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "resend": "^6.4.2",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.18",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "terser": "^5.44.1"
   }
 }

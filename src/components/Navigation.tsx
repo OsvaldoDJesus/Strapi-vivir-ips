@@ -1,5 +1,21 @@
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+
+// SVG Icon inline
+const ChevronDownIcon = ({ style }: { style?: React.CSSProperties }) => (
+  <svg 
+    width="16" 
+    height="16" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    style={style}
+  >
+    <path d="m6 9 6 6 6-6"/>
+  </svg>
+);
 
 interface NavigationProps {
   isOpen: boolean;
@@ -48,10 +64,8 @@ export default function Navigation({ isOpen, onClose }: NavigationProps) {
             aria-expanded={activeDropdown === 'nosotros'}
           >
             <span>Nosotros</span>
-            <ChevronDown 
+            <ChevronDownIcon 
               style={{
-                width: '16px',
-                height: '16px',
                 marginLeft: '8px',
                 transition: 'transform 0.3s ease',
                 transform: activeDropdown === 'nosotros' ? 'rotate(180deg)' : 'rotate(0deg)'
@@ -67,6 +81,15 @@ export default function Navigation({ isOpen, onClose }: NavigationProps) {
                 onClick={handleLinkClick}
               >
                 Sobre nosotros
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/blog"
+                className="submenu-link"
+                onClick={handleLinkClick}
+              >
+                Aprende con Nosotros
               </a>
             </li>
             <li>

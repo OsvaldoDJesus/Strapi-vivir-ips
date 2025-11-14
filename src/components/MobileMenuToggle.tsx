@@ -1,6 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+
+// SVG Icons inline
+const MenuIcon = () => (
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="4" x2="20" y1="12" y2="12" />
+    <line x1="4" x2="20" y1="6" y2="6" />
+    <line x1="4" x2="20" y1="18" y2="18" />
+  </svg>
+);
+
+const XIcon = () => (
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  </svg>
+);
 
 interface MobileMenuToggleProps {
   onToggle: (isOpen: boolean) => void;
@@ -82,9 +97,10 @@ export default function MobileMenuToggle({ onToggle }: MobileMenuToggleProps) {
           left: '50%',
           transform: `translate(-50%, -50%) ${isOpen ? 'rotate(45deg) scale(0.8)' : 'rotate(0deg) scale(1)'}`,
           transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-          opacity: isOpen ? 0 : 1
+          opacity: isOpen ? 0 : 1,
+          color: '#374151'
         }}>
-          <Menu style={{ width: '30px', height: '30px', color: '#374151' }} />
+          <MenuIcon />
         </div>
         {/* Icono de X */}
         <div style={{
@@ -93,9 +109,10 @@ export default function MobileMenuToggle({ onToggle }: MobileMenuToggleProps) {
           left: '50%',
           transform: `translate(-50%, -50%) ${isOpen ? 'rotate(0deg) scale(1)' : 'rotate(-45deg) scale(0.8)'}`,
           transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-          opacity: isOpen ? 1 : 0
+          opacity: isOpen ? 1 : 0,
+          color: '#374151'
         }}>
-          <X style={{ width: '30px', height: '30px', color: '#374151' }} />
+          <XIcon />
         </div>
       </div>
     </Button>
